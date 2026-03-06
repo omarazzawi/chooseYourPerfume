@@ -1,0 +1,386 @@
+/* Google fonts import*/
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Macondo&family=Oswald:wght@200..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,200;0,300;0,400;1,100;1,200;1,300;1,400&family=Quicksand:wght@300..700&display=swap');
+
+/*Ganeral */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    /* genral color */
+    color: #F1F7ED;
+    font-family: "Montserrat Alternates", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+/*Header*/
+
+header {
+    background-color: #3B544C;
+    padding: 0 1.5rem;
+    position: fixed;
+    z-index: 99;
+    width: 100%;
+    box-shadow: 0 2px 2px #272727;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+header a {
+    text-decoration: none;
+}
+
+h1 {
+    padding: 1.5rem 0;
+    font-size: 100%;
+    letter-spacing: 1.3px;
+    color: #F1F7ED;
+    text-align: center;
+    font-family: "Montserrat Alternates", sans-serif;
+    font-weight: 100;
+    font-style: italic;
+}
+
+h2 {
+    padding: 1.5rem 0;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #F1F7ED;
+    text-align: center;
+    font-size: 160%;
+}
+
+/* The padding taget the paragraph for a  breathe in case you want add another h4 elemint*/
+
+h4 {
+    padding-bottom: 1rem;
+}
+
+
+
+#menu {
+    letter-spacing: 2px;
+    list-style-type: none;
+}
+
+#menu a {
+    color: #F1F7ED;
+    font-weight: 200;
+}
+
+.active {
+    border-bottom: 1px solid #454544;
+}
+
+/* Navbar style*/
+nav {
+    position: absolute;
+    background-color: #3B544C;
+    width: 100%;
+    left: 0;
+    padding: 0 1rem;
+    display: none;
+    top: 100%;
+    font-family: "Montserrat Alternates", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+/* Nav toggle */
+#nav-toggle:checked~nav {
+    display: block;
+}
+
+#nav-toggle {
+    display: none;
+}
+
+.nav-toggle-label {
+    font-size: 2rem;
+}
+
+/* Styling the booking button*/
+.book-time {
+    font-size: 110%;
+    font-weight: 400;
+    color: #F1F7ED;
+    background-color: #3B544C;
+    text-decoration: none;
+    box-sizing: content-box;
+    padding: 0.8rem;
+
+}
+
+.book-time:hover {
+    background-color: silver;
+    color: #3B544C;
+}
+
+/*Main*/
+
+main {
+    background-color: #020202;
+    /* Make main element take up any surplus space to push footer down */
+    flex: 1 0 auto;
+    margin-top: 78px;
+    color: #F1F7ED;
+
+}
+
+.video {
+    width: 100%;
+    padding-top: 67px;
+}
+
+/* Booking page */
+
+#booking h2 {
+    padding-bottom: 10px;
+    padding-top: 80px;
+}
+
+#booking .form-label {
+    font-weight: bold;
+}
+
+#booking .btn-primary {
+    border: #1c1c1c;
+    background-color: #597d71;
+    font-size: 120%;
+}
+
+#booking p {
+    font-weight: bolder;
+    font-size: 120%;
+}
+
+#confirmation-message {
+    display: none;
+    background: white;
+    color: #1c1c1c;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 20px 0;
+    border: 1px solid #1c1c1c;
+    justify-self: center;
+    width: fit-content;
+}
+
+/* Card sction */
+
+.card {
+    border: none;
+    background-color: whitesmoke;
+    color: #020202;
+}
+
+.card-title {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-weight: 200;
+    font-style: italic;
+}
+
+
+
+/* Style the second booking button*/
+
+#perfume-card .book-time {
+    font-size: 150%;
+}
+
+/* History page */
+
+#history {
+    padding-bottom: 50px;
+
+}
+
+#history h2 {
+    padding-top: 75px;
+}
+
+#history p {
+    text-align: justify;
+}
+
+#history a {
+    text-decoration: none;
+    font-weight: bold;
+    color: green;
+
+}
+
+/*Footer*/
+
+footer {
+    background-color: #28353d;
+}
+
+.contact {
+    text-align: center;
+    padding-top: 15px;
+    color: #F1F7ED;
+}
+
+#follow-us {
+    text-align: center;
+    padding-top: 10px;
+    color: #F1F7ED;
+}
+
+/* Diffrent hover style, just for fun*/
+
+.fa-facebook:hover {
+    background-color: blue;
+}
+
+.fa-x-twitter:hover {
+    background-color: black;
+}
+
+.fa-youtube-square:hover {
+    background-color: #CD201F;
+}
+
+.fa-instagram:hover {
+    background-color: #ffdc80;
+}
+
+#social-networks {
+    text-align: center;
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-evenly;
+    list-style-type: none;
+}
+
+#social-networks i {
+    font-size: 160%;
+    padding: 5%;
+    color: #F1F7ED;
+}
+
+/** Media query for Medium and large mobile screen (375px and up) */
+@media screen and (min-width: 375px) {
+
+    /* Header*/
+    
+    header {
+        padding-bottom: 9px;
+    }
+    
+    #home {
+        padding-bottom: 2rem;
+    }
+      
+  
+
+
+    main {
+        margin-top: 60px;
+    }
+
+    .video {
+        padding-top: 43px;
+    }
+
+    #history h2 {
+        padding-top: 86px;
+    }
+
+}
+
+@media screen and (min-width: 420px) {
+    h1 {
+        font-size: 150%;
+    }
+}
+
+/** Media query tablets and larger screen (768px and up) */
+@media screen and (min-width: 768px) {
+
+    /* Header*/
+    header {
+        padding-bottom: 0px;
+    }
+
+    h1 {
+        font-size: 145%;
+    }
+
+    nav {
+        padding-top: 1px;
+        display: block;
+        position: relative;
+        box-shadow: none;
+        width: fit-content;
+    }
+
+    #menu {
+        display: flex;
+        padding-top: 2rem;
+    }
+
+    #menu>li {
+        padding-left: 1rem;
+        font-size: 110%;
+    }
+
+    .nav-toggle-label {
+        display: none;
+    }
+}
+
+/* Main content */
+main {
+    margin-top: 57px;
+}
+
+/* We set min-height to make the cards have the same frame dimension */
+#perfume-card .card-body {
+    min-height: 395px;
+}
+
+/* Large devices (laptops and desktops, 992px and up) */
+@media screen and (min-width: 992px) {
+    nav {
+        display: block;
+        position: relative;
+        box-shadow: none;
+        width: fit-content;
+    }
+
+    #menu a:hover {
+        border-bottom: 2px solid #1c1c1c;
+    }
+
+    #menu>li {
+        padding-left: 1rem;
+        font-size: 120%;
+        font-weight: 900;
+    }
+
+    #logo {
+        font-size: 150%;
+        line-height: 75px;
+        margin: 0 0.5rem;
+    }
+
+    main {
+        margin-top: 75px;
+    }
+
+    #perfume-card .card-title {
+        padding-bottom: 35px;
+        padding-top: 5px;
+    }
+
+}
