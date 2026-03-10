@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}My Bookings - Choose Your Perfume{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h2 class="mb-4"><i class="fa-solid fa-calendar-days"></i> My Bookings</h2>
+    
+    {% if bookings %}
+        <div class="row">
+            {% for booking in bookings %}
+            <div class="col-12 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ booking.session.title }}</h5>
+                        <p class="mb-2">
+                            <i class="fa-solid fa-calendar"></i> 
+                            <strong>Date:</strong> {{ booking.booking_date }}
+                        </p>
+                        <p class="mb-2">
+                            <i class="fa-solid fa-clock"></i> 
+                            <strong>Time:</strong> {{ booking.booking_time }}
+                        </p>
+                        <p class="mb-2">
+                            <span class="badge bg-{{ booking.status }}">{{ booking.get_status_display }}</span>
+                            {% if booking.is_paid %}
+                                <span class="badge bg-success">Paid</span>
+                            {% else %}
+                                <span class="badge bg-warning">Unpaid</span>
+                            {% endif %}
+                        </p>
+                        {% if booking.notes %}
+                            <p class="mb-0"><strong>Notes:</strong> {{ booking.notes }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-info">
+            <i class="fa-solid fa-info-circle"></i> You don't have any bookings yet.
+            <a href="{% url 'consultations:consultation_list' %}">Book a consultation now!</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

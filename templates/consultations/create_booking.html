@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}Book {{ session.title }} - Choose Your Perfume{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0"><i class="fa-solid fa-calendar-check"></i> Book Consultation</h3>
+                </div>
+                <div class="card-body">
+                    <!-- Session Details -->
+                    <div class="alert alert-info">
+                        <h4 class="alert-heading">{{ session.title }}</h4>
+                        <p class="mb-2">{{ session.description }}</p>
+                        <hr>
+                        <p class="mb-1">
+                            <i class="fa-solid fa-clock"></i> <strong>Duration:</strong> {{ session.duration }} minutes
+                        </p>
+                        <p class="mb-0">
+                            <i class="fa-solid fa-euro-sign"></i> <strong>Price:</strong> €{{ session.price }}
+                        </p>
+                    </div>
+                    
+                    <!-- Booking Form -->
+                    <form method="post">
+                        {% csrf_token %}
+                        
+                        <div class="mb-3">
+                            <label class="form-label">{{ form.booking_date.label }} *</label>
+                            {{ form.booking_date }}
+                            {% if form.booking_date.errors %}
+                                <div class="text-danger">{{ form.booking_date.errors }}</div>
+                            {% endif %}
+                            <small class="form-text text-muted">Select a future date for your consultation</small>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">{{ form.booking_time.label }} *</label>
+                            {{ form.booking_time }}
+                            {% if form.booking_time.errors %}
+                                <div class="text-danger">{{ form.booking_time.errors }}</div>
+                            {% endif %}
+                            <small class="form-text text-muted">Choose your preferred time (9:00 AM - 6:00 PM recommended)</small>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">{{ form.notes.label }}</label>
+                            {{ form.notes }}
+                            {% if form.notes.errors %}
+                                <div class="text-danger">{{ form.notes.errors }}</div>
+                            {% endif %}
+                        </div>
+                        
+                        <hr>
+                        
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="fa-solid fa-check"></i> Confirm Booking
+                            </button>
+                            <a href="{% url 'consultations:consultation_list' %}" class="btn btn-secondary">
+                                <i class="fa-solid fa-arrow-left"></i> Back to Consultations
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
