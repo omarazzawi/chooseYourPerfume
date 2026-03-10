@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}History - Choose Your Perfume{% endblock %}
+
+{% block content %}
+<main id="history">
+    <section class="container">
+        <h2>Exploring the History and Meaning of Perfume</h2>
+        
+        <div>
+            <p><strong>If you're here, you might be as obsessed—or at least as passionate—about perfume as I am.
+                So before we dive into perfume history, let's start with the fundamental question:</strong>
+            </p>
+            <h4><strong>Why do we wear perfume?</strong></h4>
+
+            <p>Dr. Joseph A. Schwarcz, an author and sessional instructor at McGill University, answers this in an
+                incredible way: <em>"The use of perfume is mainly associated with mystery, fantasy, and imagination.
+                We wear Perfume to please others, to leave a good impression,
+                to surround ourselves with a pleasing, lingering scent."</em>
+            </p>
+        </div>
+
+        <div>
+            <p>
+                This idea is beautifully echoed in <strong>My Thieving Heart song by</strong> <strong>Sivert Høyem
+                    (feat. Marie Munroe)</strong>, where Sivert captures a fleeting yet powerful moment in the lyrics:
+                <em><strong>"The restless city air blends with the traces of your perfume."</strong></em><br>
+                If you're curious, here's the link to their song:
+                <a href="https://open.spotify.com/track/4WCpAOgtcEvrPF43hXsZrJ" target="_blank" rel="noopener"
+                    aria-label="Spotify link to the song (opens in a new tab)">My Thieving Heart
+                    <i class="fa-brands fa-spotify"></i></a>
+            </p>
+        </div>
+
+        <div>
+            <h3>Other reasons according to Dr. Schwarcz</h3>
+            <p>
+                Studying the Science of Scents. People sometimes use fragrances not only to make themselves smell nice,
+                but also with hopes of reducing stress, energizing themselves or just lifting their mood.
+                Aromatherapy is the practice based on the notion that scents can affect mood and well-being.
+                There is also "aromachology," the exploration of the link between fragrances and psychology.
+                A study by the Olfactory Research Fund in New York actually found a 63% reduction in stress in
+                patients undergoing MRI scans when vanilla scent was pumped into the air around them!
+            </p>
+        </div>
+
+        <div>
+            <img src="{% static 'images/hero-perfume-lady.jpg' %}" 
+                 class="rounded mx-auto d-block col-12 col-xl-12 pb-4" 
+                 alt="A photo of a lady, her fingers elegantly pressing the atomiser of a sleek perfume bottle.">
+        </div>
+
+        <div>
+            <h3>A Brief Glimpse into Perfume's Origins</h3>
+            <p><strong>Although perfume does have a long history but did you know it has not always carried a hint of
+                    romance!</strong></p>
+            <p>In an article published on March 20, 2011, by the Office for Science and Society at McGill University,
+                Dr. Joe Schwarcz, PhD, explains:
+                "The word perfume comes from the Latin phrase, <strong>"per"</strong>
+                meaning <strong>"thorough"</strong> and <strong>"fumus"</strong> meaning <strong>"smoke".</strong>
+                The French later gave the name "parfum" to the smells produced by burning incense.
+                Indeed, the first form of perfume was incense, first made by the Mesopotamians about 4000 years ago.
+                Ancient cultures burned a variety of resins and wood at their religious ceremonies. Incense made its way to
+                Egypt around 3000 B.C.
+                but until the beginning of Egypt's Golden Age, perfumes were used only in religious rituals.
+                They became available to all Egyptians as the priests gradually relinquished their exclusive rights.
+                Citizens took elaborate baths and soaked their skin in scented oils for pleasure."
+                <br>
+                The ancient Greeks can take credit for the first liquid perfume.
+                But it was the development of distillation by the Arabs that made perfume manufacture viable.
+                Perfume enjoyed huge success during the seventeenth century, especially in France.
+                Hygiene in those days was pretty spotty and fragrances were used to mask the unpleasant body odors.
+                In England perfumes were used extensively during the reigns of Henry VIII and Queen Elizabeth I.
+                All public places were scented during Elizabeth's rule because she could not tolerate bad smells.
+            </p>
+
+            <div>
+                <img src="{% static 'images/perfumer-blending.jpg' %}" 
+                     class="rounded mx-auto d-block col-12 col-xl-12 pb-4"
+                     alt="A perfumer in a sunlit atelier carefully blends fragrant oils, crafting a signature fragrance.">
+            </div>
+
+            <div>
+                <h4>Modern Perfume</h4>
+                <p>
+                    As with industry and art, perfume was to undergo profound change in the nineteenth century.
+                    Changing tastes and the development of chemistry laid the foundations for modern perfumery.
+                    At the turn of the century, perfume usually was derived from a single-flower fragrance.
+                    Today, perfumes are extremely complex, made up of many natural and synthetic chemicals,
+                    often referred to as "notes" or "overtones." Chanel No5 was the first perfume created by
+                    applying modern chemical principles and the first to contain synthetics.
+                </p>
+
+                <p>
+                    Eau de cologne, usually used by men, was invented by an Italian barber in the beginning
+                    of the eighteenth century in the German city of Köln. Hence the name cologne,
+                    the French name for the city. The original name of this concoction was "Aqua Admirabilis" (Admirable
+                    Water),
+                    and it was sold as a "miracle medicine." The wonder water was highly praised by Napoleon
+                    and was first sold as a fragrance under the name 4711, the address of the first eau de cologne shop in
+                    Koln.
+                    It is still the world's oldest continuously produced fragrance.
+                </p>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

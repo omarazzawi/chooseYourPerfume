@@ -1,12 +1,104 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Home - Choose Your Perfume{% endblock %}
 
 {% block content %}
-<h2 style="color: white; text-align: center; padding: 100px 20px;">
-    Welcome to Choose Your Perfume!
-</h2>
-<p style="color: white; text-align: center;">
-    This is a test page to verify our setup works.
-</p>
+<!-- Video Section -->
+<video controls loop muted autoplay class="video">
+    <source src="{% static 'video/heroVideo.mp4' %}" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+<h2>How to Pick the Perfect Perfume</h2>
+
+<!-- Perfume Questions Section -->
+<section id="perfume-questions" class="container">
+    <div>
+        <p>With endless perfumes to explore, I've spent years reading, testing, and falling in love with men's fragrances.
+           Through this journey, I've learned one golden rule: Before choosing your scent,
+           always ask yourself these key questions:</p>
+        
+        <ul>
+            <li><strong>What</strong> is the occasion?
+                <ul>
+                    <li><em>Romantic date? Family gathering? Professional meeting?</em></li>
+                </ul>
+            </li>
+            <li><strong>Where</strong> will you be?
+                <ul>
+                    <li><em>Office formal? Nightclub bold? Casual daytime?</em></li>
+                </ul>
+            </li>
+            <li><strong>When</strong> will you wear it?
+                <ul>
+                    <li><em>Summer freshness? Winter warmth? Daytime light or nighttime intense?</em></li>
+                </ul>
+            </li>
+        </ul>
+        
+        <p>Overwhelmed by those questions? Keep it simple—there are <strong><em>3 foolproof scents</em></strong> that always work:</p>
+    </div>
+
+    <!-- Perfume Cards -->
+    <div class="row" id="perfume-card">
+        <div class="col-12 text-center">
+            <h3>Minimalist Perfume Wardrobe: The Men Essential 3</h3>
+        </div>
+        
+        <!-- Date Perfume -->
+        <div class="col-12 col-md-4 col-xl-4">
+            <div class="card mb-2 mt-2 pb-10">
+                <img src="{% static 'images/datePerfumeOmar.jpg' %}" class="card-img-top" alt="Jean Paul Gaultier perfume bottle">
+                <div class="card-body">
+                    <h3 class="card-title sub-heading-color">Date</h3>
+                    <p class="card-text">
+                        <strong>Jean Paul Le Male Le Parfum</strong> - A seductive, mature scent for men.
+                        Opens with spicy cardamom, unfolds into lavender & iris,
+                        and dries down to a warm vanilla-woody finish. Bold, elegant, and irresistibly masculine.
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <p class="mb-0"><strong>Price from €70</strong></p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Winter Perfume -->
+        <div class="col-12 col-md-4 col-xl-4 mb-2">
+            <div class="card mb-2 mt-2">
+                <img src="{% static 'images/winterPerfumeOmar.jpg' %}" class="card-img-top" alt="Emporio Armani Stronger With You perfume">
+                <div class="card-body">
+                    <h3 class="card-title sub-heading-color">Winter</h3>
+                    <p class="card-text">
+                        <strong>Stronger With You by Armani</strong> - A bold winter scent with spicy cardamom, pink pepper,
+                        and violet leaf opening, warming into chestnut, vanilla, and amber.
+                        Magnetic and irresistibly masculine.
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <p class="mb-0"><strong>Price from €50</strong></p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Everyday Perfume -->
+        <div class="col-12 col-md-4 col-xl-4">
+            <div class="card mb-2 mt-2">
+                <img src="{% static 'images/evrydayPerfumeOmar.jpg' %}" class="card-img-top" alt="Nautica Voyage perfume bottle">
+                <div class="card-body">
+                    <h3 class="card-title sub-heading-color">Every day</h3>
+                    <p class="card-text">
+                        <strong>Nautica Voyage</strong> - A fresh, woody aquatic fragrance for men,
+                        loved for its easy wearability and affordability.
+                        Aquatic scent with apple, lotus, and musk. Perfect for everyday freshness.
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <p class="mb-0"><strong>Price from €16</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}
