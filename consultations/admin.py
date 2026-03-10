@@ -1,5 +1,3 @@
-# Register your models here.
-
 from django.contrib import admin
 from .models import ConsultationSession, Booking
 
@@ -16,6 +14,6 @@ class ConsultationSessionAdmin(admin.ModelAdmin):
 class BookingAdmin(admin.ModelAdmin):
     """Admin configuration for Booking."""
     list_display = ['user', 'session', 'booking_date', 'booking_time', 'status', 'is_paid', 'created_at']
-    list_filter = ['status', 'is_paid', 'booking_date']
-    search_fields = ['user__username', 'session__title', 'notes']
+    list_filter = ['user', 'status', 'is_paid', 'booking_date']
+    search_fields = ['user__username', 'user__email', 'session__title', 'notes']
     date_hierarchy = 'booking_date'
