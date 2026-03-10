@@ -28,15 +28,20 @@
         <input type="checkbox" id="nav-toggle" name="nav-toggle">
         <label for="nav-toggle" class="nav-toggle-label">
             <i class="fa-solid fa-bars"></i>
-        </label>
-        <nav>
-            <ul id="menu">
-                <li><a href="{% url 'home' %}" class="{% if request.path == '/' %}active{% endif %}">Home</a></li>
-                <li><a href="{% url 'history' %}" class="{% if 'history' in request.path %}active{% endif %}">History</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="{% url 'accounts:register' %}">Register</a></li>
-            </ul>
-        </nav>
+            </label>
+            <nav>
+                <ul id="menu">
+                    <li><a href="{% url 'home' %}" class="{% if request.path == '/' %}active{% endif %}">Home</a></li>
+                    <li><a href="{% url 'history' %}" class="{% if 'history' in request.path %}active{% endif %}">History</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'accounts:logout' %}">Logout ({{ user.username }})</a></li>
+                    {% else %}
+                    <li><a href="{% url 'accounts:login' %}">Login</a></li>
+                    <li><a href="{% url 'accounts:register' %}">Register</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
     </header>
 
     <!-- Main Content -->
