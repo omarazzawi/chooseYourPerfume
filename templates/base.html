@@ -34,6 +34,7 @@
                 <li><a href="{% url 'home' %}" class="{% if request.path == '/' %}active{% endif %}">Home</a></li>
                 <li><a href="{% url 'history' %}" class="{% if 'history' in request.path %}active{% endif %}">History</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li><a href="{% url 'accounts:register' %}">Register</a></li>
             </ul>
         </nav>
     </header>
