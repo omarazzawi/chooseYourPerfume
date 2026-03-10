@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}Book a Consultation - Choose Your Perfume{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h2 class="text-center mb-5">Book Your Perfume Consultation</h2>
+    
+    <div class="row">
+        {% for session in sessions %}
+        <div class="col-12 col-md-6 col-lg-4 mb-4">
+            <div class="card h-100 shadow">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4 class="mb-0">{{ session.title }}</h4>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <p class="card-text flex-grow-1">{{ session.description }}</p>
+                    
+                    <div class="mt-3">
+                        <p class="mb-2">
+                            <i class="fa-solid fa-clock"></i> 
+                            <strong>Duration:</strong> {{ session.duration }} minutes
+                        </p>
+                        <p class="mb-3">
+                            <i class="fa-solid fa-euro-sign"></i> 
+                            <strong>Price:</strong> €{{ session.price }}
+                        </p>
+                        
+                        {% if user.is_authenticated %}
+                            <a href="#" class="btn btn-primary w-100">
+                                <i class="fa-solid fa-calendar-check"></i> Book Now
+                            </a>
+                        {% else %}
+                            <a href="{% url 'accounts:login' %}?next={{ request.path }}" class="btn btn-secondary w-100">
+                                <i class="fa-solid fa-right-to-bracket"></i> Login to Book
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="alert alert-info text-center">
+                <i class="fa-solid fa-info-circle"></i> 
+                No consultation sessions available at the moment. Please check back later.
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
