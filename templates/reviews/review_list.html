@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}My Reviews - Choose Your Perfume{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h2 class="mb-4"><i class="fa-solid fa-star"></i> My Reviews</h2>
+    
+    {% if reviews %}
+        <div class="row">
+            {% for review in reviews %}
+            <div class="col-12 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ review.session.title }}</h5>
+                        <p class="mb-2">
+                            <strong>Rating:</strong> 
+                            {% for i in "12345" %}
+                                {% if forloop.counter <= review.rating %}
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                {% else %}
+                                    <i class="fa-regular fa-star text-warning"></i>
+                                {% endif %}
+                            {% endfor %}
+                            ({{ review.rating }}/5)
+                        </p>
+                        <p class="mb-2"><strong>{{ review.title }}</strong></p>
+                        <p class="mb-2">{{ review.comment }}</p>
+                        <p class="mb-0 text-muted"><small>Posted on {{ review.created_at|date:"F d, Y" }}</small></p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-info">
+            <i class="fa-solid fa-info-circle"></i> You haven't written any reviews yet.
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

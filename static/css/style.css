@@ -1,8 +1,7 @@
-/* Google fonts import*/
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Macondo&family=Oswald:wght@200..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,200;0,300;0,400;1,100;1,200;1,300;1,400&family=Quicksand:wght@300..700&display=swap');
+/* Google fonts import */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400&display=swap');
 
-/*Ganeral */
+/* General */
 * {
     margin: 0;
     padding: 0;
@@ -13,31 +12,14 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    /* genral color */
     color: #F1F7ED;
     font-family: "Montserrat Alternates", sans-serif;
     font-weight: 300;
     font-style: normal;
+    background-color: #020202;
 }
 
-/*Header*/
-
-header {
-    background-color: #3B544C;
-    padding: 0 1.5rem;
-    position: fixed;
-    z-index: 99;
-    width: 100%;
-    box-shadow: 0 2px 2px #272727;
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-}
-
-header a {
-    text-decoration: none;
-}
-
+/* Headings */
 h1 {
     padding: 1.5rem 0;
     font-size: 100%;
@@ -58,56 +40,25 @@ h2 {
     font-size: 160%;
 }
 
-/* The padding taget the paragraph for a  breathe in case you want add another h4 elemint*/
-
 h4 {
     padding-bottom: 1rem;
 }
 
-
-
-#menu {
-    letter-spacing: 2px;
-    list-style-type: none;
-}
-
-#menu a {
+/* Main */
+main {
+    background-color: #020202;
+    flex: 1 0 auto;
+    margin-top: 78px;
     color: #F1F7ED;
-    font-weight: 200;
 }
 
-.active {
-    border-bottom: 1px solid #454544;
-}
-
-/* Navbar style*/
-nav {
-    position: absolute;
-    background-color: #3B544C;
+/* Video */
+.video {
     width: 100%;
-    left: 0;
-    padding: 0 1rem;
-    display: none;
-    top: 100%;
-    font-family: "Montserrat Alternates", sans-serif;
-    font-weight: 300;
-    font-style: normal;
+    padding-top: 20px;
 }
 
-/* Nav toggle */
-#nav-toggle:checked~nav {
-    display: block;
-}
-
-#nav-toggle {
-    display: none;
-}
-
-.nav-toggle-label {
-    font-size: 2rem;
-}
-
-/* Styling the booking button*/
+/* Buttons */
 .book-time {
     font-size: 110%;
     font-weight: 400;
@@ -116,7 +67,6 @@ nav {
     text-decoration: none;
     box-sizing: content-box;
     padding: 0.8rem;
-
 }
 
 .book-time:hover {
@@ -124,24 +74,7 @@ nav {
     color: #3B544C;
 }
 
-/*Main*/
-
-main {
-    background-color: #020202;
-    /* Make main element take up any surplus space to push footer down */
-    flex: 1 0 auto;
-    margin-top: 78px;
-    color: #F1F7ED;
-
-}
-
-.video {
-    width: 100%;
-    padding-top: 67px;
-}
-
-/* Booking page */
-
+/* Booking Page */
 #booking h2 {
     padding-bottom: 10px;
     padding-top: 80px;
@@ -174,8 +107,7 @@ main {
     width: fit-content;
 }
 
-/* Card sction */
-
+/* Cards */
 .card {
     border: none;
     background-color: whitesmoke;
@@ -188,19 +120,17 @@ main {
     font-style: italic;
 }
 
-
-
-/* Style the second booking button*/
+.sub-heading-color {
+    color: #3B544C;
+}
 
 #perfume-card .book-time {
     font-size: 150%;
 }
 
-/* History page */
-
+/* History Page */
 #history {
     padding-bottom: 50px;
-
 }
 
 #history h2 {
@@ -215,11 +145,9 @@ main {
     text-decoration: none;
     font-weight: bold;
     color: green;
-
 }
 
-/*Footer*/
-
+/* Footer */
 footer {
     background-color: #28353d;
 }
@@ -236,8 +164,7 @@ footer {
     color: #F1F7ED;
 }
 
-/* Diffrent hover style, just for fun*/
-
+/* Social Media Icons */
 .fa-facebook:hover {
     background-color: blue;
 }
@@ -268,22 +195,41 @@ footer {
     color: #F1F7ED;
 }
 
-/** Media query for Medium and large mobile screen (375px and up) */
+/* Navbar Brand (Logo) */
+.navbar-brand em {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-weight: 100;
+    font-style: italic;
+    letter-spacing: 1.3px;
+}
+
+/* Dropdown Menu Styling */
+.dropdown-menu {
+    background-color: #3B544C;
+}
+
+.dropdown-item {
+    color: #F1F7ED;
+}
+
+.dropdown-item:hover {
+    background-color: #28353d;
+    color: #F1F7ED;
+}
+
+.dropdown-divider {
+    border-color: rgba(241, 247, 237, 0.2);
+}
+
+/* Active Nav Link */
+.nav-link.active {
+    border-bottom: 2px solid #F1F7ED;
+}
+
+/* Media Queries */
+
+/* Small devices (375px and up) */
 @media screen and (min-width: 375px) {
-
-    /* Header*/
-    
-    header {
-        padding-bottom: 9px;
-    }
-    
-    #home {
-        padding-bottom: 2rem;
-    }
-      
-  
-
-
     main {
         margin-top: 60px;
     }
@@ -295,83 +241,34 @@ footer {
     #history h2 {
         padding-top: 86px;
     }
-
 }
 
+/* Medium devices (420px and up) */
 @media screen and (min-width: 420px) {
     h1 {
         font-size: 150%;
     }
 }
 
-/** Media query tablets and larger screen (768px and up) */
+/* Tablets (768px and up) */
 @media screen and (min-width: 768px) {
-
-    /* Header*/
-    header {
-        padding-bottom: 0px;
-    }
-
     h1 {
         font-size: 145%;
     }
 
-    nav {
-        padding-top: 1px;
-        display: block;
-        position: relative;
-        box-shadow: none;
-        width: fit-content;
+    main {
+        margin-top: 57px;
     }
 
-    #menu {
-        display: flex;
-        padding-top: 2rem;
-    }
-
-    #menu>li {
-        padding-left: 1rem;
-        font-size: 110%;
-    }
-
-    .nav-toggle-label {
-        display: none;
+    #perfume-card .card-body {
+        min-height: 395px;
     }
 }
 
-/* Main content */
-main {
-    margin-top: 57px;
-}
-
-/* We set min-height to make the cards have the same frame dimension */
-#perfume-card .card-body {
-    min-height: 395px;
-}
-
-/* Large devices (laptops and desktops, 992px and up) */
+/* Large devices (992px and up) */
 @media screen and (min-width: 992px) {
-    nav {
-        display: block;
-        position: relative;
-        box-shadow: none;
-        width: fit-content;
-    }
-
-    #menu a:hover {
-        border-bottom: 2px solid #1c1c1c;
-    }
-
-    #menu>li {
-        padding-left: 1rem;
-        font-size: 120%;
-        font-weight: 900;
-    }
-
-    #logo {
+    .navbar-brand em {
         font-size: 150%;
-        line-height: 75px;
-        margin: 0 0.5rem;
     }
 
     main {
@@ -382,5 +279,4 @@ main {
         padding-bottom: 35px;
         padding-top: 5px;
     }
-
 }

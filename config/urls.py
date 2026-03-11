@@ -24,4 +24,5 @@ urlpatterns = [
     path('history/', TemplateView.as_view(template_name='history.html'), name='history'),
     path('accounts/', include('accounts.urls')),
     path('consultations/', include('consultations.urls')),
+    path('reviews/', include('reviews.urls')),
 ]

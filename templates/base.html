@@ -25,34 +25,69 @@
 <body>
     <!-- Header -->
     <header>
-        <a href="{% url 'home' %}">
-            <h1 id="logo"><em>choose your perfume</em></h1>
-        </a>
-        <input type="checkbox" id="nav-toggle" name="nav-toggle">
-        <label for="nav-toggle" class="nav-toggle-label">
-            <i class="fa-solid fa-bars"></i>
-        </label>
-        <nav>
-            <ul id="menu">
-                <ul id="menu">
-                    <li><a href="{% url 'home' %}" class="{% if request.path == '/' %}active{% endif %}">Home</a></li>
-                    <li><a href="{% url 'history' %}"
-                            class="{% if 'history' in request.path %}active{% endif %}">History</a></li>
-                    <li><a href="{% url 'consultations:consultation_list' %}"
-                            class="{% if 'consultations' in request.path %}active{% endif %}">Book Consultation</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    {% if user.is_authenticated %}
-                    <li><a href="{% url 'consultations:my_bookings' %}"
-                            class="{% if 'my-bookings' in request.path %}active{% endif %}">My Bookings</a></li>
-                    <li><a href="{% url 'accounts:profile' %}">Profile</a></li>
-                    <li><a href="{% url 'accounts:logout' %}">Logout ({{ user.username }})</a></li>
-                    {% else %}
-                    <li><a href="{% url 'accounts:login' %}">Login</a></li>
-                    <li><a href="{% url 'accounts:register' %}">Register</a></li>
-                    {% endif %}
-                </ul>
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3B544C;">
+            <div class="container-fluid">
+                <!-- Logo  -->
+                <a class="navbar-brand" href="{% url 'home' %}">
+                    <em>choose your perfume</em>
+                </a>
 
-            </ul>
+                <!-- Hamburger button for mobile -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Menu items  -->
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == '/' %}active{% endif %}"
+                                href="{% url 'home' %}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if 'history' in request.path %}active{% endif %}"
+                                href="{% url 'history' %}">History</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if 'consultations' in request.path and 'my-bookings' not in request.path %}active{% endif %}"
+                                href="{% url 'consultations:consultation_list' %}">Book Consultation</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact">Contact</a>
+                        </li>
+                        {% if user.is_authenticated %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                My Account
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="{% url 'consultations:my_bookings' %}"><i
+                                            class="fa-solid fa-calendar-days"></i> My Bookings</a></li>
+                                <li><a class="dropdown-item" href="{% url 'reviews:review_list' %}"><i
+                                            class="fa-solid fa-star"></i> My Reviews</a></li>
+                                <li><a class="dropdown-item" href="{% url 'accounts:profile' %}"><i
+                                            class="fa-solid fa-user"></i> Profile</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="{% url 'accounts:logout' %}"><i
+                                            class="fa-solid fa-right-from-bracket"></i> Logout ({{ user.username }})</a>
+                                </li>
+                            </ul>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'accounts:login' %}">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'accounts:register' %}">Register</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
         </nav>
     </header>
 
