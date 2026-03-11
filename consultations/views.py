@@ -71,3 +71,17 @@ def edit_booking(request, booking_id):
         'form': form,
         'booking': booking
     })
+
+@login_required
+def delete_booking(request, booking_id):
+    """Cancel/delete a booking."""
+    booking = get_object_or_404(Booking, id=booking_id, user=request.user)
+    
+    if request.method == 'POST':
+        session_title = booking.session.title
+        booking_date = booking.booking_date
+        booking.delete()
+        messages.success(request, f'Booking for {session_title} on {booking_date} has been cancelled.')
+        return redirect('consultations:my_bookings')
+    
+    return render(request, 'consultations/delete_booking.html', {'booking': booking})

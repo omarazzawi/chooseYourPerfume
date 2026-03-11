@@ -27,29 +27,34 @@
     <header>
         <a href="{% url 'home' %}">
             <h1 id="logo"><em>choose your perfume</em></h1>
-            </a>
-            <input type="checkbox" id="nav-toggle" name="nav-toggle">
-            <label for="nav-toggle" class="nav-toggle-label">
-                <i class="fa-solid fa-bars"></i>
-            </label>
-            <nav>
+        </a>
+        <input type="checkbox" id="nav-toggle" name="nav-toggle">
+        <label for="nav-toggle" class="nav-toggle-label">
+            <i class="fa-solid fa-bars"></i>
+        </label>
+        <nav>
+            <ul id="menu">
                 <ul id="menu">
                     <li><a href="{% url 'home' %}" class="{% if request.path == '/' %}active{% endif %}">Home</a></li>
-                    <li><a href="{% url 'history' %}" class="{% if 'history' in request.path %}active{% endif %}">History</a></li>
+                    <li><a href="{% url 'history' %}"
+                            class="{% if 'history' in request.path %}active{% endif %}">History</a></li>
                     <li><a href="{% url 'consultations:consultation_list' %}"
                             class="{% if 'consultations' in request.path %}active{% endif %}">Book Consultation</a></li>
                     <li><a href="#contact">Contact</a></li>
                     {% if user.is_authenticated %}
+                    <li><a href="{% url 'consultations:my_bookings' %}"
+                            class="{% if 'my-bookings' in request.path %}active{% endif %}">My Bookings</a></li>
                     <li><a href="{% url 'accounts:profile' %}">Profile</a></li>
                     <li><a href="{% url 'accounts:logout' %}">Logout ({{ user.username }})</a></li>
                     {% else %}
                     <li><a href="{% url 'accounts:login' %}">Login</a></li>
                     <li><a href="{% url 'accounts:register' %}">Register</a></li>
                     {% endif %}
-            
                 </ul>
-            </nav>
-            </header>
+
+            </ul>
+        </nav>
+    </header>
 
     <!-- Main Content -->
     <main>

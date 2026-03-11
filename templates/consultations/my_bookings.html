@@ -36,16 +36,17 @@
                             {% endif %}
                         </p>
                         {% if booking.notes %}
-                            <p class="mb-3"><strong>Notes:</strong> {{ booking.notes }}</p>
+                        <p class="mb-3"><strong>Notes:</strong> {{ booking.notes }}</p>
                         {% endif %}
                         
                         <div class="d-grid gap-2 d-md-flex">
                             <a href="{% url 'consultations:edit_booking' booking.id %}" class="btn btn-warning btn-sm">
                                 <i class="fa-solid fa-pen-to-square"></i> Edit
                             </a>
-                            <a href="#" class="btn btn-danger btn-sm">
+                            <a href="{% url 'consultations:delete_booking' booking.id %}" class="btn btn-danger btn-sm">
                                 <i class="fa-solid fa-trash"></i> Cancel
                             </a>
+                        
                         </div>
                     </div>
                 </div>

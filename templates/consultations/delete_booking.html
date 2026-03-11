@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Cancel Booking - Choose Your Perfume{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h3 class="mb-0"><i class="fa-solid fa-triangle-exclamation"></i> Cancel Booking</h3>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-warning">
+                        <h5 class="alert-heading">Are you sure you want to cancel this booking?</h5>
+                        <hr>
+                        <p class="mb-2"><strong>Consultation:</strong> {{ booking.session.title }}</p>
+                        <p class="mb-2"><strong>Date:</strong> {{ booking.booking_date }}</p>
+                        <p class="mb-2"><strong>Time:</strong> {{ booking.booking_time }}</p>
+                        <p class="mb-0"><strong>Price:</strong> €{{ booking.session.price }}</p>
+                    </div>
+                    
+                    <p class="text-danger"><strong>This action cannot be undone!</strong></p>
+                    
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-danger btn-lg">
+                                <i class="fa-solid fa-trash"></i> Yes, Cancel Booking
+                            </button>
+                            <a href="{% url 'consultations:my_bookings' %}" class="btn btn-secondary">
+                                <i class="fa-solid fa-arrow-left"></i> No, Keep Booking
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
