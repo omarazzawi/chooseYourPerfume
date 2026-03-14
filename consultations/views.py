@@ -3,7 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.conf import settings
 from django.http import JsonResponse
-from datetime import date
+from django.db.models import Q
+from datetime import date, datetime
 import stripe
 import json
 
@@ -48,6 +49,8 @@ def create_booking(request, session_id):
 def my_bookings(request):
     """Display user's bookings separated by upcoming and past."""
     today = date.today()
+    now = datetime.now().time()
+    
     # Show payment success message
     if request.GET.get('payment') == 'success':
         messages.success(request, 'Payment successful! Your booking is confirmed.')
@@ -60,14 +63,38 @@ def my_bookings(request):
         is_paid=True
     ).update(status='completed')
     
-    upcoming_bookings = Booking.objects.filter(
+    # Get all bookings for today
+    today_bookings = Booking.objects.filter(
         user=request.user,
-        booking_date__gte=today
+        booking_date=today
+    )
+    
+    # Separate today's bookings into upcoming (future time) and past (past time)
+    upcoming_today = []
+    past_today = []
+    
+    for booking in today_bookings:
+        if booking.booking_time > now:
+            upcoming_today.append(booking.id)
+        else:
+            past_today.append(booking.id)
+            # Auto-complete today's past bookings if paid
+            if booking.status == 'confirmed' and booking.is_paid:
+                booking.status = 'completed'
+                booking.save()
+    
+    # Upcoming: future dates + today's future times
+    upcoming_bookings = Booking.objects.filter(
+        user=request.user
+    ).filter(
+        Q(booking_date__gt=today) | Q(id__in=upcoming_today)
     ).order_by('booking_date', 'booking_time')
     
+    # Past: past dates + today's past times
     past_bookings = Booking.objects.filter(
-        user=request.user,
-        booking_date__lt=today
+        user=request.user
+    ).filter(
+        Q(booking_date__lt=today) | Q(id__in=past_today)
     ).order_by('-booking_date', '-booking_time')
     
     # Get list of sessions user has already reviewed
