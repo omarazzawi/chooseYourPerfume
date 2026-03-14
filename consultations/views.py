@@ -4,6 +4,7 @@ from django.contrib import messages
 from .models import ConsultationSession, Booking
 from .forms import BookingForm
 from datetime import date
+from reviews.models import Review
 
 def consultation_list(request):
     """Display all available consultation sessions."""
@@ -33,6 +34,7 @@ def create_booking(request, session_id):
         'session': session
     })
 
+
 @login_required
 def my_bookings(request):
     """Display user's bookings separated by upcoming and past."""
@@ -48,9 +50,13 @@ def my_bookings(request):
         booking_date__lt=today
     ).order_by('-booking_date', '-booking_time')
     
+    # Get list of sessions user has already reviewed
+    reviewed_sessions = Review.objects.filter(user=request.user).values_list('session_id', flat=True)
+    
     return render(request, 'consultations/my_bookings.html', {
         'upcoming_bookings': upcoming_bookings,
-        'past_bookings': past_bookings
+        'past_bookings': past_bookings,
+        'reviewed_sessions': list(reviewed_sessions),
     })
 
 @login_required
