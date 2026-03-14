@@ -2,8 +2,10 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.conf import settings
+from django.http import JsonResponse
 from datetime import date
 import stripe
+import json
 
 from .models import ConsultationSession, Booking, Payment
 from .forms import BookingForm
@@ -12,11 +14,11 @@ from reviews.models import Review
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
-
 def consultation_list(request):
     """Display all available consultation sessions."""
     sessions = ConsultationSession.objects.filter(is_available=True)
     return render(request, 'consultations/consultation_list.html', {'sessions': sessions})
+
 
 @login_required
 def create_booking(request, session_id):
@@ -46,6 +48,9 @@ def create_booking(request, session_id):
 def my_bookings(request):
     """Display user's bookings separated by upcoming and past."""
     today = date.today()
+    # Show payment success message
+    if request.GET.get('payment') == 'success':
+        messages.success(request, 'Payment successful! Your booking is confirmed.')
     
     # Auto-update confirmed bookings that are now in the past to completed
     Booking.objects.filter(
@@ -74,6 +79,7 @@ def my_bookings(request):
         'reviewed_sessions': list(reviewed_sessions),
     })
 
+
 @login_required
 def edit_booking(request, booking_id):
     """Edit an existing booking."""
@@ -93,6 +99,7 @@ def edit_booking(request, booking_id):
         'booking': booking
     })
 
+
 @login_required
 def delete_booking(request, booking_id):
     """Cancel/delete a booking."""
@@ -108,9 +115,6 @@ def delete_booking(request, booking_id):
     return render(request, 'consultations/delete_booking.html', {'booking': booking})
 
 
-stripe.api_key = settings.STRIPE_SECRET_KEY
-
-
 @login_required
 def checkout(request, booking_id):
     """Checkout page for booking payment."""
@@ -123,44 +127,69 @@ def checkout(request, booking_id):
     
     if request.method == 'POST':
         try:
-            # Create Stripe Payment Intent
+            # Get payment method from request
+            data = json.loads(request.body)
+            payment_method_id = data.get('payment_method_id')
+            
+            print(f"Payment Method ID: {payment_method_id}")  # Debug
+            
+            # Create Stripe Payment Intent with payment method
             intent = stripe.PaymentIntent.create(
                 amount=int(booking.session.price * 100),  # Convert to cents
                 currency='eur',
+                payment_method=payment_method_id,
+                confirm=True,
+                return_url=request.build_absolute_uri('/consultations/my-bookings/'),
+                automatic_payment_methods={
+                    'enabled': True,
+                    'allow_redirects': 'never'
+                },
                 metadata={
                     'booking_id': booking.id,
                     'user_id': request.user.id,
                 }
             )
             
-            print(f"Stripe Intent Created: {intent.id}")  # Debug
+            print(f"Payment Intent Status: {intent.status}")  # Debug
             
             # Create Payment record
             payment = Payment.objects.create(
                 booking=booking,
                 stripe_payment_intent_id=intent.id,
                 amount=booking.session.price,
-                status='pending'
+                status='succeeded'
             )
-            
-            print(f"Payment Record Created: {payment.id}")  # Debug
             
             # Mark booking as paid and confirmed
             booking.is_paid = True
             booking.status = 'confirmed'
             booking.save()
             
-            print(f"Booking Updated: is_paid={booking.is_paid}, status={booking.status}")  # Debug
+            print(f"Booking saved: {booking.id}")  # Debug
             
-            messages.success(request, 'Payment successful! Your booking is confirmed.')
-            return redirect('consultations:my_bookings')
+            return JsonResponse({
+                'success': True,
+                'redirect_url': '/consultations/my-bookings/?payment=success'
+            })
             
+        except stripe.error.CardError as e:
+            print(f"CARD ERROR: {e.user_message}")  # Debug
+            return JsonResponse({
+                'success': False,
+                'error': e.user_message
+            })
         except stripe.error.StripeError as e:
             print(f"STRIPE ERROR: {str(e)}")  # Debug
-            messages.error(request, f'Payment failed: {str(e)}')
+            return JsonResponse({
+                'success': False,
+                'error': 'Payment failed. Please try again.'
+            })
         except Exception as e:
             print(f"GENERAL ERROR: {str(e)}")  # Debug
-            messages.error(request, f'An error occurred: {str(e)}')
+            return JsonResponse({
+                'success': False,
+                'error': str(e)
+            })
     
     context = {
         'booking': booking,

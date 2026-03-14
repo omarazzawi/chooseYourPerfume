@@ -22,21 +22,29 @@
                     </div>
                     
                     <!-- Payment Form -->
-                    <form method="post">
+                    <form id="payment-form">
                         {% csrf_token %}
                         
                         <div class="alert alert-warning">
                             <i class="fa-solid fa-info-circle"></i> 
-                            <strong>Test Mode:</strong> This is a test payment. No real money will be charged.
+                            <strong>Test Mode:</strong> Use card number 4242 4242 4242 4242, any future date, any CVC.
                         </div>
                         
-                        <p class="mb-3">
-                            By clicking "Pay Now", you confirm your booking and agree to our terms.
-                        </p>
+                        <!-- Stripe Card Element -->
+                        <div class="mb-3">
+                            <label class="form-label">Card Details</label>
+                            <div id="card-element" class="form-control" style="height: 40px; padding-top: 10px;">
+                                <!-- Stripe will insert card input here -->
+                            </div>
+                            <div id="card-errors" class="text-danger mt-2"></div>
+                        </div>
                         
                         <div class="d-grid gap-2">
-                            <button type="submit" class="btn btn-success btn-lg">
-                                <i class="fa-solid fa-lock"></i> Pay €{{ booking.session.price }}
+                            <button type="submit" id="submit-button" class="btn btn-success btn-lg">
+                                <span id="button-text">
+                                    <i class="fa-solid fa-lock"></i> Pay €{{ booking.session.price }}
+                                </span>
+                                <span id="spinner" class="spinner-border spinner-border-sm d-none" role="status"></span>
                             </button>
                             <a href="{% url 'consultations:my_bookings' %}" class="btn btn-secondary">
                                 <i class="fa-solid fa-arrow-left"></i> Cancel
@@ -48,4 +56,87 @@
         </div>
     </div>
 </div>
+
+<!-- Stripe.js -->
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    // Initialize Stripe
+    const stripe = Stripe('{{ stripe_public_key }}');
+    const elements = stripe.elements();
+    
+    // Create card element
+    const cardElement = elements.create('card', {
+        style: {
+            base: {
+                fontSize: '16px',
+                color: '#32325d',
+            }
+        }
+    });
+    cardElement.mount('#card-element');
+    
+    // Handle validation errors
+    cardElement.on('change', function(event) {
+        const displayError = document.getElementById('card-errors');
+        if (event.error) {
+            displayError.textContent = event.error.message;
+        } else {
+            displayError.textContent = '';
+        }
+    });
+    
+    // Handle form submission
+    const form = document.getElementById('payment-form');
+    const submitButton = document.getElementById('submit-button');
+    const buttonText = document.getElementById('button-text');
+    const spinner = document.getElementById('spinner');
+    
+    form.addEventListener('submit', async function(event) {
+        event.preventDefault();
+        
+        // Disable button and show spinner
+        submitButton.disabled = true;
+        buttonText.classList.add('d-none');
+        spinner.classList.remove('d-none');
+        
+        // Create payment method
+        const {paymentMethod, error} = await stripe.createPaymentMethod({
+            type: 'card',
+            card: cardElement,
+        });
+        
+        if (error) {
+            // Show error
+            document.getElementById('card-errors').textContent = error.message;
+            submitButton.disabled = false;
+            buttonText.classList.remove('d-none');
+            spinner.classList.add('d-none');
+        } else {
+            // Send payment method to server
+            const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+            
+            fetch('', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrftoken
+                },
+                body: JSON.stringify({
+                    payment_method_id: paymentMethod.id
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.href = data.redirect_url;
+                } else {
+                    document.getElementById('card-errors').textContent = data.error;
+                    submitButton.disabled = false;
+                    buttonText.classList.remove('d-none');
+                    spinner.classList.add('d-none');
+                }
+            });
+        }
+    });
+</script>
 {% endblock %}
