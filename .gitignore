@@ -8,3 +8,5 @@ __pycache__/
 
 # Django
 db.sqlite3
+# Environment variables (Stripe keys)
+.env

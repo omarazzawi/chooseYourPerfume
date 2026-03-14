@@ -40,13 +40,17 @@
                     {% endif %}
 
                     <div class="d-grid gap-2 d-md-flex">
+                        {% if not booking.is_paid %}
+                        <a href="{% url 'consultations:checkout' booking.id %}" class="btn btn-success btn-sm">
+                            <i class="fa-solid fa-credit-card"></i> Pay Now
+                        </a>
+                        {% endif %}
                         <a href="{% url 'consultations:edit_booking' booking.id %}" class="btn btn-warning btn-sm">
                             <i class="fa-solid fa-pen-to-square"></i> Edit
                         </a>
                         <a href="{% url 'consultations:delete_booking' booking.id %}" class="btn btn-danger btn-sm">
                             <i class="fa-solid fa-trash"></i> Cancel
                         </a>
-
                     </div>
                 </div>
             </div>

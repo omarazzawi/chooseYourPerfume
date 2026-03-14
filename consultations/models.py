@@ -54,3 +54,20 @@ class Booking(models.Model):
         verbose_name = 'Booking'
         verbose_name_plural = 'Bookings'
         ordering = ['-booking_date', '-booking_time']
+
+
+class Payment(models.Model):
+    """Payment records for bookings."""
+    booking = models.OneToOneField(Booking, on_delete=models.CASCADE, related_name='payment')
+    stripe_payment_intent_id = models.CharField(max_length=255, unique=True)
+    amount = models.DecimalField(max_digits=6, decimal_places=2)
+    currency = models.CharField(max_length=3, default='eur')
+    status = models.CharField(max_length=20, default='pending')
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return f"Payment for {self.booking} - €{self.amount}"
+    
+    class Meta:
+        verbose_name = 'Payment'
+        verbose_name_plural = 'Payments'

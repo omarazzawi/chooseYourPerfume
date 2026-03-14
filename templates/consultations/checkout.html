@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}Checkout - Choose Your Perfume{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-success text-white">
+                    <h3 class="mb-0"><i class="fa-solid fa-credit-card"></i> Checkout</h3>
+                </div>
+                <div class="card-body">
+                    <!-- Booking Summary -->
+                    <div class="alert alert-info">
+                        <h5 class="alert-heading">{{ booking.session.title }}</h5>
+                        <hr>
+                        <p class="mb-1"><strong>Date:</strong> {{ booking.booking_date }}</p>
+                        <p class="mb-1"><strong>Time:</strong> {{ booking.booking_time }}</p>
+                        <p class="mb-1"><strong>Duration:</strong> {{ booking.session.duration }} minutes</p>
+                        <p class="mb-0"><strong>Amount:</strong> €{{ booking.session.price }}</p>
+                    </div>
+                    
+                    <!-- Payment Form -->
+                    <form method="post">
+                        {% csrf_token %}
+                        
+                        <div class="alert alert-warning">
+                            <i class="fa-solid fa-info-circle"></i> 
+                            <strong>Test Mode:</strong> This is a test payment. No real money will be charged.
+                        </div>
+                        
+                        <p class="mb-3">
+                            By clicking "Pay Now", you confirm your booking and agree to our terms.
+                        </p>
+                        
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-success btn-lg">
+                                <i class="fa-solid fa-lock"></i> Pay €{{ booking.session.price }}
+                            </button>
+                            <a href="{% url 'consultations:my_bookings' %}" class="btn btn-secondary">
+                                <i class="fa-solid fa-arrow-left"></i> Cancel
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
