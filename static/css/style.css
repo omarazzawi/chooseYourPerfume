@@ -352,7 +352,6 @@ footer {
 /* Book button - GREEN */
 .consultation-btn {
     background-color: #198754;
-    background-color: ;
     color: #F1F7ED;
     border: none;
     padding: 0.75rem;
@@ -378,4 +377,89 @@ footer {
 .consultation-btn-secondary:hover {
     background-color: #020202;
     color: #ffffff;
+}
+
+
+/* BOOKING FORM STYLING */
+
+.booking-form-card {
+    border: 2px solid #f6fafa;
+    border-radius: 12px;
+}
+
+.booking-form-header {
+    background-color: #020202;
+    padding: 1.5rem;
+}
+
+.booking-form-header h3 {
+    color: #F1F7ED;
+    margin: 0;
+}
+
+.session-details-box {
+    background-color: #f6fafa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 2px solid #243832;
+    margin-bottom: 2rem;
+}
+
+.session-details-box h4 {
+    color: #020202;
+    margin-bottom: 1rem;
+}
+
+.session-details-box p {
+    color: #020202;
+}
+
+.session-details-box hr {
+    border-color: #28473d;
+    opacity: 0.3;
+}
+
+.session-details-box i {
+    color: #659284;
+}
+
+.booking-confirm-btn {
+    background-color: #198754;
+    border: none;
+    color: #F1F7ED;
+    font-weight: 600;
+    padding: 0.75rem;
+}
+
+.booking-confirm-btn:hover {
+    background-color: #2a3d36;
+    color: #F1F7ED;
+}
+
+.booking-back-btn {
+    background-color: #6c757d;
+    border: none;
+    color: #ffffff;
+    font-weight: 600;
+    padding: 0.75rem;
+}
+
+.booking-back-btn:hover {
+    background-color: #5a6268;
+    color: #ffffff;
+}
+
+/* Form inputs styling */
+.booking-form-card .form-control,
+.booking-form-card .form-select {
+    border: 1px solid #3B544C;
+}
+.booking-form-card .form-control:focus,
+.booking-form-card .form-select:focus {
+    border-color: #3B544C;
+    box-shadow: 0 0 0 0.2rem rgba(59, 84, 76, 0.25);
+}
+
+.booking-form-card .form-label {
+    color: #333;
 }

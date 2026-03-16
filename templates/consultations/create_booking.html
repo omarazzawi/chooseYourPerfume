@@ -6,14 +6,14 @@
 <div class="container my-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card shadow">
-                <div class="card-header bg-primary text-white">
+            <div class="card shadow booking-form-card">
+                <div class="card-header text-white booking-form-header">
                     <h3 class="mb-0"><i class="fa-solid fa-calendar-check"></i> Book Consultation</h3>
                 </div>
                 <div class="card-body">
                     <!-- Session Details -->
-                    <div class="alert alert-info">
-                        <h4 class="alert-heading">{{ session.title }}</h4>
+                    <div class="session-details-box">
+                        <h4>{{ session.title }}</h4>
                         <p class="mb-2">{{ session.description }}</p>
                         <hr>
                         <p class="mb-1">
@@ -29,7 +29,7 @@
                         {% csrf_token %}
                         
                         <div class="mb-3">
-                            <label class="form-label">{{ form.booking_date.label }} *</label>
+                            <label class="form-label"><strong>{{ form.booking_date.label }} *</strong></label>
                             {{ form.booking_date }}
                             {% if form.booking_date.errors %}
                                 <div class="text-danger">{{ form.booking_date.errors }}</div>
@@ -38,7 +38,7 @@
                         </div>
                         
                         <div class="mb-3">
-                            <label class="form-label">{{ form.booking_time.label }} *</label>
+                            <label class="form-label"><strong>{{ form.booking_time.label }} *</strong></label>
                             {{ form.booking_time }}
                             {% if form.booking_time.errors %}
                                 <div class="text-danger">{{ form.booking_time.errors }}</div>
@@ -47,7 +47,7 @@
                         </div>
                         
                         <div class="mb-3">
-                            <label class="form-label">{{ form.notes.label }}</label>
+                            <label class="form-label"><strong>{{ form.notes.label }}</strong></label>
                             {{ form.notes }}
                             {% if form.notes.errors %}
                                 <div class="text-danger">{{ form.notes.errors }}</div>
@@ -57,10 +57,10 @@
                         <hr>
                         
                         <div class="d-grid gap-2">
-                            <button type="submit" class="btn btn-primary btn-lg">
+                            <button type="submit" class="btn btn-lg booking-confirm-btn">
                                 <i class="fa-solid fa-check"></i> Confirm Booking
                             </button>
-                            <a href="{% url 'consultations:consultation_list' %}" class="btn btn-secondary">
+                            <a href="{% url 'consultations:consultation_list' %}" class="btn booking-back-btn">
                                 <i class="fa-solid fa-arrow-left"></i> Back to Consultations
                             </a>
                         </div>
