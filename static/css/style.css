@@ -463,3 +463,302 @@ footer {
 .booking-form-card .form-label {
     color: #333;
 }
+
+
+/* MY REVIEWS STYLING */
+
+.review-card {
+    border: 2px solid whitesmoke;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #ffffff;
+}
+
+.review-card-header {
+    background-color: #020202;
+    padding: 1.5rem;
+    border: none;
+}
+
+.review-card-header h5 {
+    color: #F1F7ED;
+    margin: 0;
+}
+
+.review-card .card-body {
+    background-color: #ffffff;
+    padding: 1.5rem;
+}
+
+.review-rating {
+    color: #333333;
+}
+
+.review-comment {
+    color: #333333;
+}
+
+/* Edit button - GREEN */
+.review-edit-btn {
+    background-color: #198754;
+    color: #F1F7ED;
+    border: none;
+    font-weight: 600;
+}
+
+.review-edit-btn:hover {
+    background-color: #020202;
+    color: #F1F7ED;
+}
+
+/* Delete button stays red (Bootstrap default) */
+.review-card .btn-danger {
+    background-color: rgb(199, 7, 7);
+    font-weight: 600;
+}
+
+
+/* BOOKING STATUS BADGES */
+
+/* Status badges with proper colors */
+.badge.bg-pending {
+    background-color: #ffc107 !important;
+    color: #000 !important;
+}
+
+.badge.bg-confirmed {
+    background-color: #0d6efd !important;
+    color: #fff !important;
+}
+
+.badge.bg-completed {
+    background-color: #198754 !important;
+    color: #fff !important;
+}
+
+.badge.bg-cancelled {
+    background-color: #dc3545 !important;
+    color: #fff !important;
+}
+
+/* Make sure badges are visible */
+.card .badge {
+    font-weight: 600;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+}
+
+/* MY BOOKINGS CARDS STYLING */
+
+/* Upcoming bookings cards */
+.card.border-primary {
+    border-radius: 12px;
+    background-color: #ffffff;
+    height: 100%;
+}
+
+.card.border-primary .card-body {
+    background-color: #ffffff;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.card.border-primary .card-title {
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.card.border-primary p {
+    color: #333;
+}
+
+.card.border-primary i {
+
+    margin-right: 0.5rem;
+}
+
+/* Past bookings cards */
+.card.border-secondary {
+    border-radius: 12px;
+    background-color: #ffffff;
+    height: 100%;
+}
+
+.card.border-secondary .card-body {
+    background-color: #ffffff;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.card.border-secondary .card-title {
+    color: #6c757d;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.card.border-secondary p {
+    color: #333;
+}
+
+.card.border-secondary i {
+    color: #6c757d;
+    margin-right: 0.5rem;
+}
+
+/* Equal spacing between cards */
+.container .row .col-12.col-md-6 {
+    margin-bottom: 1.5rem;
+}
+
+/* Ensure buttons stay at bottom */
+.card-body .d-grid,
+.card-body .d-flex {
+    margin-top: auto;
+}
+
+/* BOOKING DETAIL PAGE STYLING */
+
+.booking-detail-card {
+    border: none;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.booking-detail-header {
+    background: linear-gradient(135deg, #3B544C 0%, #2a3d36 100%);
+    padding: 2rem;
+}
+
+.booking-detail-header h3 {
+    color: #F1F7ED;
+    font-size: 1.75rem;
+    font-weight: 600;
+}
+
+/* Info Grid - 2x2 layout */
+.booking-info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    background-color: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+}
+
+.info-icon {
+    font-size: 2rem;
+    color: #3B544C;
+    margin-right: 1rem;
+    width: 50px;
+    text-align: center;
+}
+
+.info-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-label {
+    font-size: 0.875rem;
+    color: #6c757d;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+.info-value {
+    font-size: 1.125rem;
+    color: #333;
+    font-weight: 600;
+}
+
+/* Description Section */
+.description-section {
+    background-color: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+}
+
+.description-section h5 {
+    color: #3B544C;
+    margin-bottom: 1rem;
+}
+
+.description-section p {
+    margin-bottom: 0;
+    line-height: 1.6;
+}
+
+/* Status Grid - 3 columns */
+.status-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.status-item {
+    text-align: center;
+    background-color: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+}
+
+.status-icon {
+    font-size: 2rem;
+    color: #3B544C;
+    margin-bottom: 0.75rem;
+}
+
+.status-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.status-label {
+    font-size: 0.875rem;
+    color: #6c757d;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.status-value {
+    font-size: 1rem;
+    color: #333;
+    font-weight: 600;
+}
+
+.booking-back-btn {
+    background-color: #6c757d;
+    color: #fff;
+    border: none;
+    padding: 0.75rem 2rem;
+    font-weight: 600;
+    border-radius: 8px;
+}
+
+.booking-back-btn:hover {
+    background-color: #5a6268;
+    color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .booking-info-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .status-grid {
+        grid-template-columns: 1fr;
+    }
+}

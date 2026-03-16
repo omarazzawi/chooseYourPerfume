@@ -5,67 +5,112 @@
 {% block content %}
 <div class="container my-5">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <h2 class="mb-4"><i class="fa-solid fa-calendar-check"></i> Booking Details</h2>
+        <div class="col-md-10">
+            <h2 class="mb-4 text-center"><i class="fa-solid fa-calendar-check"></i> Booking Details</h2>
 
-            <div class="card shadow">
-                <div class="card-header bg-success text-white">
-                    <h4 class="mb-0">{{ booking.session.name }}</h4>
+            <div class="card booking-detail-card shadow-lg">
+                <div class="card-header booking-detail-header text-white">
+                    <h3 class="mb-0 text-center">{{ booking.session.title }}</h3>
                 </div>
-                <div class="card-body">
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <p class="mb-2"><strong><i class="fa-solid fa-calendar"></i> Date:</strong></p>
-                            <p>{{ booking.date|date:"F d, Y" }}</p>
+                <div class="card-body p-4">
+                    
+                    <!-- Main Info Grid -->
+                    <div class="booking-info-grid">
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fa-solid fa-calendar"></i>
+                            </div>
+                            <div class="info-content">
+                                <span class="info-label">Date</span>
+                                <span class="info-value">{{ booking.booking_date }}</span>
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                            <p class="mb-2"><strong><i class="fa-solid fa-clock"></i> Time:</strong></p>
-                            <p>{{ booking.time|time:"g:i A" }}</p>
+
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+                            <div class="info-content">
+                                <span class="info-label">Time</span>
+                                <span class="info-value">{{ booking.booking_time }}</span>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fa-solid fa-hourglass-half"></i>
+                            </div>
+                            <div class="info-content">
+                                <span class="info-label">Duration</span>
+                                <span class="info-value">{{ booking.session.duration }} minutes</span>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fa-solid fa-euro-sign"></i>
+                            </div>
+                            <div class="info-content">
+                                <span class="info-label">Price</span>
+                                <span class="info-value">€{{ booking.session.price }}</span>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <p class="mb-2"><strong><i class="fa-solid fa-hourglass-half"></i> Duration:</strong></p>
-                            <p>{{ booking.session.duration }} minutes</p>
+                    <hr class="my-4">
+
+                    <!-- Description Section -->
+                    <div class="description-section">
+                        <h5><i class="fa-solid fa-info-circle"></i> Description</h5>
+                        <p class="text-muted">{{ booking.session.description }}</p>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <!-- Status & Reference Grid -->
+                    <div class="status-grid">
+                        <div class="status-item">
+                            <div class="status-icon">
+                                <i class="fa-solid fa-receipt"></i>
+                            </div>
+                            <div class="status-content">
+                                <span class="status-label">Booking Reference</span>
+                                <span class="status-value">#{{ booking.id }}</span>
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                            <p class="mb-2"><strong><i class="fa-solid fa-euro-sign"></i> Price:</strong></p>
-                            <p>€{{ booking.session.price }}</p>
+
+                        <div class="status-item">
+                            <div class="status-icon">
+                                <i class="fa-solid fa-credit-card"></i>
+                            </div>
+                            <div class="status-content">
+                                <span class="status-label">Payment Status</span>
+                                {% if booking.is_paid %}
+                                <span class="status-value text-success">
+                                    <i class="fa-solid fa-check-circle"></i> Paid
+                                </span>
+                                {% else %}
+                                <span class="status-value text-warning">
+                                    <i class="fa-solid fa-clock"></i> Pending Payment
+                                </span>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="status-item">
+                            <div class="status-icon">
+                                <i class="fa-solid fa-calendar-plus"></i>
+                            </div>
+                            <div class="status-content">
+                                <span class="status-label">Booked On</span>
+                                <span class="status-value">{{ booking.created_at|date:"M d, Y g:i A" }}</span>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="row mb-3">
-                        <div class="col-12">
-                            <p class="mb-2"><strong><i class="fa-solid fa-info-circle"></i> Description:</strong></p>
-                            <p>{{ booking.session.description }}</p>
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <p class="mb-2"><strong><i class="fa-solid fa-receipt"></i> Booking Reference:</strong></p>
-                            <p>#{{ booking.id }}</p>
-                        </div>
-                        <div class="col-md-6">
-                            <p class="mb-2"><strong><i class="fa-solid fa-credit-card"></i> Payment Status:</strong></p>
-                            {% if booking.is_paid %}
-                            <p class="text-success"><i class="fa-solid fa-check-circle"></i> Paid</p>
-                            {% else %}
-                            <p class="text-warning"><i class="fa-solid fa-clock"></i> Pending Payment</p>
-                            {% endif %}
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-12">
-                            <p class="mb-2"><strong><i class="fa-solid fa-calendar-plus"></i> Booked On:</strong></p>
-                            <p>{{ booking.created_at|date:"F d, Y g:i A" }}</p>
-                        </div>
-                    </div>
                 </div>
-                <div class="card-footer">
-                    <a href="{% url 'consultations:my_bookings' %}" class="btn btn-secondary">
+                <div class="card-footer text-center py-3">
+                    <a href="{% url 'consultations:my_bookings' %}" class="btn booking-back-btn">
                         <i class="fa-solid fa-arrow-left"></i> Back to My Bookings
                     </a>
                 </div>
