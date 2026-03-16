@@ -1,3 +1,4 @@
+
 /* Google fonts import */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400&display=swap');
 
@@ -6,6 +7,17 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+/* Increase navbar height */
+header nav {
+    min-height: 100px;
+}
+
+header .navbar-brand,
+header .nav-link {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
 }
 
 body {
@@ -55,7 +67,7 @@ main {
 /* Video */
 .video {
     width: 100%;
-    padding-top: 20px;
+    padding-top: 1px;
 }
 
 /* Buttons */
@@ -279,4 +291,91 @@ footer {
         padding-bottom: 35px;
         padding-top: 5px;
     }
+}
+
+
+
+/* Card container with equal spacing */
+.consultation-card {
+    border: 2px solid whitesmoke ;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #ffffff;
+    height: 100%;
+}
+
+/* Card header - GREEN background */
+.consultation-card-header {
+    background-color: #020202;
+    padding: 1.5rem;
+    border: none;
+}
+
+.consultation-card-header h4 {
+    color: #F1F7ED;
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+/* Card body */
+.consultation-card .card-body {
+    background-color: #ffffff;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Description - fixed height */
+.consultation-description {
+    color: #333333;
+    min-height: 100px;
+    margin-bottom: 1rem;
+}
+
+/* Info section */
+.consultation-info {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+}
+
+.consultation-info p {
+    color: #333333;
+    margin: 0;
+}
+
+.consultation-info i {
+    color: #3B544C;
+}
+
+/* Book button - GREEN */
+.consultation-btn {
+    background-color: #198754;
+    background-color: ;
+    color: #F1F7ED;
+    border: none;
+    padding: 0.75rem;
+    font-weight: 600;
+    margin-top: 1rem;
+}
+
+.consultation-btn:hover {
+    background-color:  #020202;
+    color: #F1F7ED;
+}
+
+/* Login button - GRAY */
+.consultation-btn-secondary {
+    background-color: #020202;
+    color: #ffffff;
+    border: none;
+    padding: 0.75rem;
+    font-weight: 600;
+    margin-top: 1rem;
+}
+
+.consultation-btn-secondary:hover {
+    background-color: #020202;
+    color: #ffffff;
 }
