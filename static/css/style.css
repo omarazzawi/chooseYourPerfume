@@ -1,23 +1,13 @@
-
 /* Google fonts import */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400&display=swap');
 
-/* General */
+/* ========================================
+   GENERAL STYLES
+======================================== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-/* Increase navbar height */
-header nav {
-    min-height: 100px;
-}
-
-header .navbar-brand,
-header .nav-link {
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
 }
 
 body {
@@ -27,18 +17,25 @@ body {
     color: #F1F7ED;
     font-family: "Montserrat Alternates", sans-serif;
     font-weight: 300;
-    font-style: normal;
     background-color: #020202;
 }
 
-/* Headings */
+main {
+    background-color: #020202;
+    flex: 1 0 auto;
+    margin-top: 78px;
+    color: #F1F7ED;
+}
+
+/* ========================================
+   TYPOGRAPHY
+======================================== */
 h1 {
     padding: 1.5rem 0;
     font-size: 100%;
     letter-spacing: 1.3px;
     color: #F1F7ED;
     text-align: center;
-    font-family: "Montserrat Alternates", sans-serif;
     font-weight: 100;
     font-style: italic;
 }
@@ -56,70 +53,87 @@ h4 {
     padding-bottom: 1rem;
 }
 
-/* Main */
-main {
-    background-color: #020202;
-    flex: 1 0 auto;
-    margin-top: 78px;
+/* ========================================
+   NAVIGATION
+======================================== */
+header nav {
+    min-height: 100px;
+}
+
+header .navbar-brand,
+header .nav-link {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+.navbar-brand em {
+    font-weight: 100;
+    font-style: italic;
+    letter-spacing: 1.3px;
+}
+
+.nav-link.active {
+    border-bottom: 2px solid #F1F7ED;
+}
+
+.dropdown-menu {
+    background-color: #3B544C;
+}
+
+.dropdown-item {
     color: #F1F7ED;
 }
 
-/* Video */
+.dropdown-item:hover {
+    background-color: #28353d;
+    color: #F1F7ED;
+}
+
+.dropdown-divider {
+    border-color: rgba(241, 247, 237, 0.2);
+}
+
+/* ========================================
+   FOOTER
+======================================== */
+footer {
+    background-color: #28353d;
+}
+
+.contact,
+#follow-us {
+    text-align: center;
+    padding-top: 15px;
+    color: #F1F7ED;
+}
+
+#social-networks {
+    text-align: center;
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-evenly;
+    list-style-type: none;
+}
+
+#social-networks i {
+    font-size: 160%;
+    padding: 5%;
+    color: #F1F7ED;
+}
+
+.fa-facebook:hover { background-color: blue; }
+.fa-x-twitter:hover { background-color: black; }
+.fa-youtube-square:hover { background-color: #CD201F; }
+.fa-instagram:hover { background-color: #ffdc80; }
+
+/* ========================================
+   HOMEPAGE
+======================================== */
 .video {
     width: 100%;
     padding-top: 1px;
 }
 
-/* Buttons */
-.book-time {
-    font-size: 110%;
-    font-weight: 400;
-    color: #F1F7ED;
-    background-color: #3B544C;
-    text-decoration: none;
-    box-sizing: content-box;
-    padding: 0.8rem;
-}
-
-.book-time:hover {
-    background-color: silver;
-    color: #3B544C;
-}
-
-/* Booking Page */
-#booking h2 {
-    padding-bottom: 10px;
-    padding-top: 80px;
-}
-
-#booking .form-label {
-    font-weight: bold;
-}
-
-#booking .btn-primary {
-    border: #1c1c1c;
-    background-color: #597d71;
-    font-size: 120%;
-}
-
-#booking p {
-    font-weight: bolder;
-    font-size: 120%;
-}
-
-#confirmation-message {
-    display: none;
-    background: white;
-    color: #1c1c1c;
-    padding: 10px;
-    border-radius: 5px;
-    margin: 20px 0;
-    border: 1px solid #1c1c1c;
-    justify-self: center;
-    width: fit-content;
-}
-
-/* Cards */
 .card {
     border: none;
     background-color: whitesmoke;
@@ -127,7 +141,6 @@ main {
 }
 
 .card-title {
-    font-family: "Montserrat Alternates", sans-serif;
     font-weight: 200;
     font-style: italic;
 }
@@ -140,7 +153,27 @@ main {
     font-size: 150%;
 }
 
-/* History Page */
+#perfume-card .card-body {
+    min-height: 395px;
+}
+
+.book-time {
+    font-size: 110%;
+    font-weight: 400;
+    color: #F1F7ED;
+    background-color: #3B544C;
+    text-decoration: none;
+    padding: 0.8rem;
+}
+
+.book-time:hover {
+    background-color: silver;
+    color: #3B544C;
+}
+
+/* ========================================
+   HISTORY PAGE
+======================================== */
 #history {
     padding-bottom: 50px;
 }
@@ -159,152 +192,17 @@ main {
     color: green;
 }
 
-/* Footer */
-footer {
-    background-color: #28353d;
-}
-
-.contact {
-    text-align: center;
-    padding-top: 15px;
-    color: #F1F7ED;
-}
-
-#follow-us {
-    text-align: center;
-    padding-top: 10px;
-    color: #F1F7ED;
-}
-
-/* Social Media Icons */
-.fa-facebook:hover {
-    background-color: blue;
-}
-
-.fa-x-twitter:hover {
-    background-color: black;
-}
-
-.fa-youtube-square:hover {
-    background-color: #CD201F;
-}
-
-.fa-instagram:hover {
-    background-color: #ffdc80;
-}
-
-#social-networks {
-    text-align: center;
-    padding: 20px 0;
-    display: flex;
-    justify-content: space-evenly;
-    list-style-type: none;
-}
-
-#social-networks i {
-    font-size: 160%;
-    padding: 5%;
-    color: #F1F7ED;
-}
-
-/* Navbar Brand (Logo) */
-.navbar-brand em {
-    font-family: "Montserrat Alternates", sans-serif;
-    font-weight: 100;
-    font-style: italic;
-    letter-spacing: 1.3px;
-}
-
-/* Dropdown Menu Styling */
-.dropdown-menu {
-    background-color: #3B544C;
-}
-
-.dropdown-item {
-    color: #F1F7ED;
-}
-
-.dropdown-item:hover {
-    background-color: #28353d;
-    color: #F1F7ED;
-}
-
-.dropdown-divider {
-    border-color: rgba(241, 247, 237, 0.2);
-}
-
-/* Active Nav Link */
-.nav-link.active {
-    border-bottom: 2px solid #F1F7ED;
-}
-
-/* Media Queries */
-
-/* Small devices (375px and up) */
-@media screen and (min-width: 375px) {
-    main {
-        margin-top: 60px;
-    }
-
-    .video {
-        padding-top: 43px;
-    }
-
-    #history h2 {
-        padding-top: 86px;
-    }
-}
-
-/* Medium devices (420px and up) */
-@media screen and (min-width: 420px) {
-    h1 {
-        font-size: 150%;
-    }
-}
-
-/* Tablets (768px and up) */
-@media screen and (min-width: 768px) {
-    h1 {
-        font-size: 145%;
-    }
-
-    main {
-        margin-top: 57px;
-    }
-
-    #perfume-card .card-body {
-        min-height: 395px;
-    }
-}
-
-/* Large devices (992px and up) */
-@media screen and (min-width: 992px) {
-    .navbar-brand em {
-        font-size: 150%;
-    }
-
-    main {
-        margin-top: 75px;
-    }
-
-    #perfume-card .card-title {
-        padding-bottom: 35px;
-        padding-top: 5px;
-    }
-}
-
-
-
-/* Card container with equal spacing */
+/* ========================================
+   CONSULTATION CARDS
+======================================== */
 .consultation-card {
-    border: 2px solid whitesmoke ;
+    border: 2px solid whitesmoke;
     border-radius: 12px;
     overflow: hidden;
     background-color: #ffffff;
     height: 100%;
 }
 
-/* Card header - GREEN background */
 .consultation-card-header {
     background-color: #020202;
     padding: 1.5rem;
@@ -317,7 +215,6 @@ footer {
     font-size: 1.25rem;
 }
 
-/* Card body */
 .consultation-card .card-body {
     background-color: #ffffff;
     padding: 1.5rem;
@@ -325,14 +222,12 @@ footer {
     flex-direction: column;
 }
 
-/* Description - fixed height */
 .consultation-description {
     color: #333333;
     min-height: 100px;
     margin-bottom: 1rem;
 }
 
-/* Info section */
 .consultation-info {
     background-color: #f8f9fa;
     padding: 1rem;
@@ -349,7 +244,6 @@ footer {
     color: #3B544C;
 }
 
-/* Book button - GREEN */
 .consultation-btn {
     background-color: #198754;
     color: #F1F7ED;
@@ -360,11 +254,10 @@ footer {
 }
 
 .consultation-btn:hover {
-    background-color:  #020202;
+    background-color: #020202;
     color: #F1F7ED;
 }
 
-/* Login button - GRAY */
 .consultation-btn-secondary {
     background-color: #020202;
     color: #ffffff;
@@ -374,14 +267,9 @@ footer {
     margin-top: 1rem;
 }
 
-.consultation-btn-secondary:hover {
-    background-color: #020202;
-    color: #ffffff;
-}
-
-
-/* BOOKING FORM STYLING */
-
+/* ========================================
+   BOOKING FORM
+======================================== */
 .booking-form-card {
     border: 2px solid #f6fafa;
     border-radius: 12px;
@@ -436,24 +324,11 @@ footer {
     color: #F1F7ED;
 }
 
-.booking-back-btn {
-    background-color: #6c757d;
-    border: none;
-    color: #ffffff;
-    font-weight: 600;
-    padding: 0.75rem;
-}
-
-.booking-back-btn:hover {
-    background-color: #5a6268;
-    color: #ffffff;
-}
-
-/* Form inputs styling */
 .booking-form-card .form-control,
 .booking-form-card .form-select {
     border: 1px solid #3B544C;
 }
+
 .booking-form-card .form-control:focus,
 .booking-form-card .form-select:focus {
     border-color: #3B544C;
@@ -464,9 +339,89 @@ footer {
     color: #333;
 }
 
+/* ========================================
+   MY BOOKINGS
+======================================== */
+.card.border-primary,
+.card.border-secondary {
+    border-radius: 12px;
+    background-color: #ffffff;
+    height: 100%;
+}
 
-/* MY REVIEWS STYLING */
+.card.border-primary .card-body,
+.card.border-secondary .card-body {
+    background-color: #ffffff;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
 
+.card.border-primary .card-title {
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.card.border-secondary .card-title {
+    color: #6c757d;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.card.border-primary p,
+.card.border-secondary p {
+    color: #333;
+}
+
+.card.border-primary i {
+    margin-right: 0.5rem;
+}
+
+.card.border-secondary i {
+    color: #6c757d;
+    margin-right: 0.5rem;
+}
+
+.container .row .col-12.col-md-6 {
+    margin-bottom: 1.5rem;
+}
+
+.card-body .d-grid,
+.card-body .d-flex {
+    margin-top: auto;
+}
+
+/* Status badges */
+.badge.bg-pending {
+    background-color: #ffc107 !important;
+    color: #000 !important;
+}
+
+.badge.bg-confirmed {
+    background-color: #0d6efd !important;
+    color: #fff !important;
+}
+
+.badge.bg-completed {
+    background-color: #198754 !important;
+    color: #fff !important;
+}
+
+.badge.bg-cancelled {
+    background-color: #dc3545 !important;
+    color: #fff !important;
+}
+
+.card .badge {
+    font-weight: 600;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+}
+
+/* ========================================
+   MY REVIEWS
+======================================== */
 .review-card {
     border: 2px solid whitesmoke;
     border-radius: 12px;
@@ -490,15 +445,11 @@ footer {
     padding: 1.5rem;
 }
 
-.review-rating {
-    color: #333333;
-}
-
+.review-rating,
 .review-comment {
     color: #333333;
 }
 
-/* Edit button - GREEN */
 .review-edit-btn {
     background-color: #198754;
     color: #F1F7ED;
@@ -511,116 +462,14 @@ footer {
     color: #F1F7ED;
 }
 
-/* Delete button stays red (Bootstrap default) */
 .review-card .btn-danger {
     background-color: rgb(199, 7, 7);
     font-weight: 600;
 }
 
-
-/* BOOKING STATUS BADGES */
-
-/* Status badges with proper colors */
-.badge.bg-pending {
-    background-color: #ffc107 !important;
-    color: #000 !important;
-}
-
-.badge.bg-confirmed {
-    background-color: #0d6efd !important;
-    color: #fff !important;
-}
-
-.badge.bg-completed {
-    background-color: #198754 !important;
-    color: #fff !important;
-}
-
-.badge.bg-cancelled {
-    background-color: #dc3545 !important;
-    color: #fff !important;
-}
-
-/* Make sure badges are visible */
-.card .badge {
-    font-weight: 600;
-    padding: 0.5rem 0.75rem;
-    font-size: 0.875rem;
-}
-
-/* MY BOOKINGS CARDS STYLING */
-
-/* Upcoming bookings cards */
-.card.border-primary {
-    border-radius: 12px;
-    background-color: #ffffff;
-    height: 100%;
-}
-
-.card.border-primary .card-body {
-    background-color: #ffffff;
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-}
-
-.card.border-primary .card-title {
-    color: #333;
-    font-weight: 600;
-    margin-bottom: 1rem;
-}
-
-.card.border-primary p {
-    color: #333;
-}
-
-.card.border-primary i {
-
-    margin-right: 0.5rem;
-}
-
-/* Past bookings cards */
-.card.border-secondary {
-    border-radius: 12px;
-    background-color: #ffffff;
-    height: 100%;
-}
-
-.card.border-secondary .card-body {
-    background-color: #ffffff;
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-}
-
-.card.border-secondary .card-title {
-    color: #6c757d;
-    font-weight: 600;
-    margin-bottom: 1rem;
-}
-
-.card.border-secondary p {
-    color: #333;
-}
-
-.card.border-secondary i {
-    color: #6c757d;
-    margin-right: 0.5rem;
-}
-
-/* Equal spacing between cards */
-.container .row .col-12.col-md-6 {
-    margin-bottom: 1.5rem;
-}
-
-/* Ensure buttons stay at bottom */
-.card-body .d-grid,
-.card-body .d-flex {
-    margin-top: auto;
-}
-
-/* BOOKING DETAIL PAGE STYLING */
-
+/* ========================================
+   BOOKING DETAIL PAGE
+======================================== */
 .booking-detail-card {
     border: none;
     border-radius: 16px;
@@ -638,7 +487,6 @@ footer {
     font-weight: 600;
 }
 
-/* Info Grid - 2x2 layout */
 .booking-info-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -681,7 +529,6 @@ footer {
     font-weight: 600;
 }
 
-/* Description Section */
 .description-section {
     background-color: #f8f9fa;
     padding: 1.5rem;
@@ -699,7 +546,6 @@ footer {
     line-height: 1.6;
 }
 
-/* Status Grid - 3 columns */
 .status-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -752,13 +598,33 @@ footer {
     color: #fff;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .booking-info-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .status-grid {
-        grid-template-columns: 1fr;
+/* ========================================
+   MEDIA QUERIES
+======================================== */
+@media screen and (min-width: 375px) {
+    main { margin-top: 60px; }
+    .video { padding-top: 43px; }
+    #history h2 { padding-top: 86px; }
+}
+
+@media screen and (min-width: 420px) {
+    h1 { font-size: 150%; }
+}
+
+@media screen and (min-width: 768px) {
+    h1 { font-size: 145%; }
+    main { margin-top: 57px; }
+}
+
+@media screen and (max-width: 768px) {
+    .booking-info-grid { grid-template-columns: 1fr; }
+    .status-grid { grid-template-columns: 1fr; }
+}
+@media screen and (min-width: 992px) {
+    .navbar-brand em { font-size: 150%; }
+    main { margin-top: 75px; }
+    #perfume-card .card-title {
+        padding-bottom: 35px;
+        padding-top: 5px;
     }
 }
