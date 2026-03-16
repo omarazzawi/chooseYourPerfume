@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /accounts/login/
+Disallow: /accounts/register/
+Allow: /
+
+Sitemap: https://www.chooseyourperfume.com/sitemap.xml
