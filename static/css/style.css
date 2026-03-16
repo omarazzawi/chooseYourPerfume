@@ -628,3 +628,12 @@ footer {
         padding-top: 5px;
     }
 }
+@media screen and (min-width: 1400px) {
+    .consultation-card-header {
+        min-height: 100px;
+    }
+    
+    .consultation-card-header h4 {
+        line-height: 1.4;
+    }
+}
