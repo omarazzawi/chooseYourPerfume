@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block title %}Booking Details - Choose Your Perfume{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h2 class="mb-4"><i class="fa-solid fa-calendar-check"></i> Booking Details</h2>
+
+            <div class="card shadow">
+                <div class="card-header bg-success text-white">
+                    <h4 class="mb-0">{{ booking.session.name }}</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <p class="mb-2"><strong><i class="fa-solid fa-calendar"></i> Date:</strong></p>
+                            <p>{{ booking.date|date:"F d, Y" }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="mb-2"><strong><i class="fa-solid fa-clock"></i> Time:</strong></p>
+                            <p>{{ booking.time|time:"g:i A" }}</p>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <p class="mb-2"><strong><i class="fa-solid fa-hourglass-half"></i> Duration:</strong></p>
+                            <p>{{ booking.session.duration }} minutes</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="mb-2"><strong><i class="fa-solid fa-euro-sign"></i> Price:</strong></p>
+                            <p>€{{ booking.session.price }}</p>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <p class="mb-2"><strong><i class="fa-solid fa-info-circle"></i> Description:</strong></p>
+                            <p>{{ booking.session.description }}</p>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <p class="mb-2"><strong><i class="fa-solid fa-receipt"></i> Booking Reference:</strong></p>
+                            <p>#{{ booking.id }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="mb-2"><strong><i class="fa-solid fa-credit-card"></i> Payment Status:</strong></p>
+                            {% if booking.is_paid %}
+                            <p class="text-success"><i class="fa-solid fa-check-circle"></i> Paid</p>
+                            {% else %}
+                            <p class="text-warning"><i class="fa-solid fa-clock"></i> Pending Payment</p>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <p class="mb-2"><strong><i class="fa-solid fa-calendar-plus"></i> Booked On:</strong></p>
+                            <p>{{ booking.created_at|date:"F d, Y g:i A" }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a href="{% url 'consultations:my_bookings' %}" class="btn btn-secondary">
+                        <i class="fa-solid fa-arrow-left"></i> Back to My Bookings
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

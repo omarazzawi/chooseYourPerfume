@@ -223,3 +223,15 @@ def checkout(request, booking_id):
         'stripe_public_key': settings.STRIPE_PUBLIC_KEY,
     }
     return render(request, 'consultations/checkout.html', context)
+
+
+@login_required
+def booking_detail(request, booking_id):
+    """Display detailed information about a specific booking."""
+    booking = get_object_or_404(Booking, id=booking_id, user=request.user)
+    
+    context = {
+        'booking': booking,
+    }
+    
+    return render(request, 'consultations/booking_detail.html', context)
