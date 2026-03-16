@@ -4,6 +4,15 @@
 {% block title %}Home - Choose Your Perfume{% endblock %}
 
 {% block content %}
+<!-- Messages -->
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show m-3" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+{% endif %}
 <!-- Video Section -->
 <video controls loop muted autoplay class="video">
     <source src="{% static 'video/heroVideo.mp4' %}" type="video/mp4">
@@ -96,6 +105,35 @@
                 </div>
                 <div class="card-footer">
                     <p class="mb-0"><strong>Price from €16</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Newsletter Section -->
+<section class="container my-5 py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-lg border-0">
+                <div class="card-body p-5 text-center">
+                    <h3 class="mb-3">
+                        <i class="fa-solid fa-envelope"></i> Get Perfume Tips & Exclusive Offers
+                    </h3>
+                    <p class="text-muted mb-4">
+                        Subscribe to our newsletter and discover your perfect scent. Receive expert tips, seasonal recommendations, and exclusive consultation offers.
+                    </p>
+                    
+                    <form method="post" action="{% url 'newsletter:subscribe' %}" class="d-flex gap-2">
+                        {% csrf_token %}
+                        <input type="email" name="email" class="form-control form-control-lg" placeholder="Enter your email address" required>
+                        <button type="submit" class="btn btn-success btn-lg">
+                            <i class="fa-solid fa-paper-plane"></i> Subscribe
+                        </button>
+                    </form>
+                    
+                    <p class="text-muted mt-3 mb-0">
+                        <small>We respect your privacy. Unsubscribe anytime.</small>
+                    </p>
                 </div>
             </div>
         </div>
