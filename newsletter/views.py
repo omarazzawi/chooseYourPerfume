@@ -12,10 +12,18 @@ def subscribe(request):
     if request.method == 'POST':
         email = request.POST.get('email')
         
-        # Check if already subscribed BEFORE form validation
-        if NewsletterSubscriber.objects.filter(email=email).exists():
-            messages.info(request, 'You are already subscribed to our newsletter!')
-        else:
+        # Check if email exists
+        try:
+            subscriber = NewsletterSubscriber.objects.get(email=email)
+            # Email exists - reactivate if inactive
+            if not subscriber.is_active:
+                subscriber.is_active = True
+                subscriber.save()
+                messages.success(request, 'Welcome back! You have been re-subscribed to our newsletter.')
+            else:
+                messages.info(request, 'You are already subscribed to our newsletter!')
+        except NewsletterSubscriber.DoesNotExist:
+            # New subscriber
             form = NewsletterForm(request.POST)
             if form.is_valid():
                 form.save()
