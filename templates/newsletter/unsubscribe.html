@@ -6,8 +6,8 @@
 <div class="container my-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <div class="card shadow">
-                <div class="card-header bg-warning text-dark">
+            <div class="card shadow auth-card">
+                <div class="card-header auth-header-warning">
                     <h3 class="mb-0"><i class="fa-solid fa-envelope-open"></i> Unsubscribe from Newsletter</h3>
                 </div>
                 <div class="card-body">
@@ -17,15 +17,15 @@
                         {% csrf_token %}
                         
                         <div class="mb-3">
-                            <label for="email" class="form-label">Email Address</label>
+                            <label for="email" class="form-label"><strong>Email Address</strong></label>
                             <input type="email" name="email" id="email" class="form-control" placeholder="Enter your email address" required>
                         </div>
                         
                         <div class="d-grid gap-2">
-                            <button type="submit" class="btn btn-warning btn-lg">
+                            <button type="submit" class="btn auth-btn-warning btn-lg">
                                 <i class="fa-solid fa-user-minus"></i> Unsubscribe
                             </button>
-                            <a href="{% url 'home' %}" class="btn btn-secondary">
+                            <a href="{% url 'home' %}" class="btn auth-btn-secondary">
                                 <i class="fa-solid fa-arrow-left"></i> Cancel
                             </a>
                         </div>

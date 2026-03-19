@@ -6,14 +6,14 @@
 <div class="container my-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card shadow">
-                <div class="card-header bg-warning text-dark">
+            <div class="card shadow auth-card">
+                <div class="card-header auth-header-warning">
                     <h3 class="mb-0"><i class="fa-solid fa-pen-to-square"></i> Edit Booking</h3>
                 </div>
                 <div class="card-body">
                     <!-- Booking Details -->
-                    <div class="alert alert-info">
-                        <h4 class="alert-heading">{{ booking.session.title }}</h4>
+                    <div class="auth-info-box mb-4">
+                        <h4 class="mb-3">{{ booking.session.title }}</h4>
                         <p class="mb-2">{{ booking.session.description }}</p>
                         <hr>
                         <p class="mb-1">
@@ -33,7 +33,7 @@
                         {% csrf_token %}
                         
                         <div class="mb-3">
-                            <label class="form-label">{{ form.booking_date.label }} *</label>
+                            <label class="form-label"><strong>{{ form.booking_date.label }} *</strong></label>
                             {{ form.booking_date }}
                             {% if form.booking_date.errors %}
                                 <div class="text-danger">{{ form.booking_date.errors }}</div>
@@ -41,7 +41,7 @@
                         </div>
                         
                         <div class="mb-3">
-                            <label class="form-label">{{ form.booking_time.label }} *</label>
+                            <label class="form-label"><strong>{{ form.booking_time.label }} *</strong></label>
                             {{ form.booking_time }}
                             {% if form.booking_time.errors %}
                                 <div class="text-danger">{{ form.booking_time.errors }}</div>
@@ -49,7 +49,7 @@
                         </div>
                         
                         <div class="mb-3">
-                            <label class="form-label">{{ form.notes.label }}</label>
+                            <label class="form-label"><strong>{{ form.notes.label }}</strong></label>
                             {{ form.notes }}
                             {% if form.notes.errors %}
                                 <div class="text-danger">{{ form.notes.errors }}</div>
@@ -59,10 +59,10 @@
                         <hr>
                         
                         <div class="d-grid gap-2">
-                            <button type="submit" class="btn btn-warning btn-lg">
+                            <button type="submit" class="btn auth-btn-warning btn-lg">
                                 <i class="fa-solid fa-save"></i> Save Changes
                             </button>
-                            <a href="{% url 'consultations:my_bookings' %}" class="btn btn-secondary">
+                            <a href="{% url 'consultations:my_bookings' %}" class="btn auth-btn-secondary">
                                 <i class="fa-solid fa-arrow-left"></i> Back to My Bookings
                             </a>
                         </div>

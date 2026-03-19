@@ -6,31 +6,31 @@
 <div class="container my-5">
     <div class="row">
         <div class="col-md-8 mx-auto">
-            <div class="card shadow">
-                <div class="card-header bg-primary text-white">
+            <div class="card shadow auth-card">
+                <div class="card-header text-white auth-header">
                     <h3 class="mb-0"><i class="fa-solid fa-user"></i> My Profile</h3>
                 </div>
                 <div class="card-body">
-                    <div class="mb-4">
-                        <p><strong>Username:</strong> {{ user.username }}</p>
-                        <p><strong>Member since:</strong> {{ user.date_joined|date:"F d, Y" }}</p>
+                    <div class="auth-info-box mb-4">
+                        <p><strong><i class="fa-solid fa-user-circle"></i> Username:</strong> {{ user.username }}</p>
+                        <p class="mb-0"><strong><i class="fa-solid fa-calendar-plus"></i> Member since:</strong> {{ user.date_joined|date:"F d, Y" }}</p>
                     </div>
                     
                     <hr>
                     
-                    <h4 class="mb-3">Update Profile Information</h4>
+                    <h4 class="mb-3 auth-form-title"><i class="fa-solid fa-pen-to-square"></i> Update Profile Information</h4>
                     <form method="post">
                         {% csrf_token %}
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">{{ form.first_name.label }}</label>
+                                <label class="form-label"><strong>{{ form.first_name.label }}</strong></label>
                                 {{ form.first_name }}
                                 {% if form.first_name.errors %}
                                     <div class="text-danger">{{ form.first_name.errors }}</div>
                                 {% endif %}
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">{{ form.last_name.label }}</label>
+                                <label class="form-label"><strong>{{ form.last_name.label }}</strong></label>
                                 {{ form.last_name }}
                                 {% if form.last_name.errors %}
                                     <div class="text-danger">{{ form.last_name.errors }}</div>
@@ -40,14 +40,14 @@
                         
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">{{ form.email.label }}</label>
+                                <label class="form-label"><strong>{{ form.email.label }}</strong></label>
                                 {{ form.email }}
                                 {% if form.email.errors %}
                                     <div class="text-danger">{{ form.email.errors }}</div>
                                 {% endif %}
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">{{ form.phone.label }}</label>
+                                <label class="form-label"><strong>{{ form.phone.label }}</strong></label>
                                 {{ form.phone }}
                                 {% if form.phone.errors %}
                                     <div class="text-danger">{{ form.phone.errors }}</div>
@@ -56,7 +56,7 @@
                         </div>
                         
                         <div class="mb-3">
-                            <label class="form-label">{{ form.address.label }}</label>
+                            <label class="form-label"><strong>{{ form.address.label }}</strong></label>
                             {{ form.address }}
                             {% if form.address.errors %}
                                 <div class="text-danger">{{ form.address.errors }}</div>
@@ -65,21 +65,21 @@
                         
                         <div class="row">
                             <div class="col-md-4 mb-3">
-                                <label class="form-label">{{ form.city.label }}</label>
+                                <label class="form-label"><strong>{{ form.city.label }}</strong></label>
                                 {{ form.city }}
                                 {% if form.city.errors %}
                                     <div class="text-danger">{{ form.city.errors }}</div>
                                 {% endif %}
                             </div>
                             <div class="col-md-4 mb-3">
-                                <label class="form-label">{{ form.postal_code.label }}</label>
+                                <label class="form-label"><strong>{{ form.postal_code.label }}</strong></label>
                                 {{ form.postal_code }}
                                 {% if form.postal_code.errors %}
                                     <div class="text-danger">{{ form.postal_code.errors }}</div>
                                 {% endif %}
                             </div>
                             <div class="col-md-4 mb-3">
-                                <label class="form-label">{{ form.country.label }}</label>
+                                <label class="form-label"><strong>{{ form.country.label }}</strong></label>
                                 {{ form.country }}
                                 {% if form.country.errors %}
                                     <div class="text-danger">{{ form.country.errors }}</div>
@@ -87,7 +87,9 @@
                             </div>
                         </div>
                         
-                        <button type="submit" class="btn btn-primary w-100">Update Profile</button>
+                        <button type="submit" class="btn auth-btn-primary w-100">
+                            <i class="fa-solid fa-check"></i> Update Profile
+                        </button>
                     </form>
                 </div>
             </div>

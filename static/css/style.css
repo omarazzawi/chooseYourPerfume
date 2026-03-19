@@ -637,3 +637,169 @@ footer {
         line-height: 1.4;
     }
 }
+
+
+/* ========================================
+   UNIFIED AUTH & FORM PAGES STYLING
+   (Login, Register, Profile, Unsubscribe, Edit/Delete)
+======================================== */
+
+/* Shared card styling */
+.auth-card {
+    border: 2px solid #f6fafa;
+    border-radius: 12px;
+}
+
+/* Shared header styling - Black */
+.auth-header {
+    background-color: #020202;
+    padding: 1.5rem;
+}
+
+.auth-header h3 {
+    color: #F1F7ED;
+    margin: 0;
+}
+
+/* Warning header - Yellow */
+.auth-header-warning {
+    background-color: #ffc107;
+    padding: 1.5rem;
+}
+
+.auth-header-warning h3 {
+    color: #020202;
+    margin: 0;
+}
+
+/* Danger header - Red */
+.auth-header-danger {
+    background-color: #dc3545;
+    padding: 1.5rem;
+}
+
+.auth-header-danger h3 {
+    color: #fff;
+    margin: 0;
+}
+
+/* Info boxes (like profile info, booking details) */
+.auth-info-box {
+    background-color: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 2px solid #e0e0e0;
+}
+
+.auth-info-box p {
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.auth-info-box h4,
+.auth-info-box h5,
+.auth-info-box h6 {
+    color: #020202;
+}
+
+.auth-info-box i {
+    color: #3B544C;
+    margin-right: 0.5rem;
+}
+
+/* Form section titles */
+.auth-form-title {
+    color: #020202;
+}
+
+.auth-form-title i {
+    color: #3B544C;
+    margin-right: 0.5rem;
+}
+
+/* Form labels and inputs */
+.auth-card .form-label {
+    color: #333;
+}
+
+.auth-card .form-control,
+.auth-card .form-select {
+    border: 1px solid #3B544C;
+}
+
+.auth-card .form-control:focus,
+.auth-card .form-select:focus {
+    border-color: #3B544C;
+    box-shadow: 0 0 0 0.2rem rgba(59, 84, 76, 0.25);
+}
+
+/* Primary button (Login, Register, Update Profile) - Green */
+.auth-btn-primary {
+    background-color: #198754;
+    border: none;
+    color: #F1F7ED;
+    font-weight: 600;
+    padding: 0.75rem;
+    font-size: 1.1rem;
+}
+
+.auth-btn-primary:hover {
+    background-color: #020202;
+    color: #F1F7ED;
+}
+
+/* Warning button (Unsubscribe, Edit) - Yellow */
+.auth-btn-warning {
+    background-color: #ffc107;
+    border: none;
+    color: #020202;
+    font-weight: 600;
+    padding: 0.75rem;
+    font-size: 1.1rem;
+}
+
+.auth-btn-warning:hover {
+    background-color: #020202;
+    color: #F1F7ED;
+}
+
+/* Danger button (Delete) - Red */
+.auth-btn-danger {
+    background-color: #dc3545;
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    padding: 0.75rem;
+    font-size: 1.1rem;
+}
+
+.auth-btn-danger:hover {
+    background-color: #020202;
+    color: #F1F7ED;
+}
+
+/* Secondary/Cancel button - Gray */
+.auth-btn-secondary {
+    background-color: #6c757d;
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    padding: 0.75rem;
+}
+
+.auth-btn-secondary:hover {
+    background-color: #5a6268;
+    color: #fff;
+}
+
+/* Links styling */
+.auth-card a {
+    color: #3B544C;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.auth-card a:hover {
+    color: #020202;
+    text-decoration: underline;
+}
