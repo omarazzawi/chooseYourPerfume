@@ -23,7 +23,7 @@ body {
 main {
     background-color: #020202;
     flex: 1 0 auto;
-    margin-top: 78px;
+    margin-top: 0;
     color: #F1F7ED;
 }
 
@@ -56,9 +56,6 @@ h4 {
 /* ========================================
    NAVIGATION
 ======================================== */
-header nav {
-    min-height: 100px;
-}
 
 header .navbar-brand,
 header .nav-link {
@@ -131,9 +128,7 @@ footer {
 ======================================== */
 .video {
     width: 100%;
-    padding-top: 1px;
 }
-
 .card {
     border: none;
     background-color: whitesmoke;
@@ -602,27 +597,31 @@ footer {
    MEDIA QUERIES
 ======================================== */
 @media screen and (min-width: 375px) {
-    main { margin-top: 60px; }
-    .video { padding-top: 43px; }
-    #history h2 { padding-top: 86px; }
+
+    #history h2 { padding-top: 86px;
+    }
 }
 
 @media screen and (min-width: 420px) {
-    h1 { font-size: 150%; }
+    h1 { font-size: 150%;
+    }
 }
 
 @media screen and (min-width: 768px) {
-    h1 { font-size: 145%; }
-    main { margin-top: 57px; }
+    h1 { font-size: 145%;
+     }
 }
 
 @media screen and (max-width: 768px) {
-    .booking-info-grid { grid-template-columns: 1fr; }
-    .status-grid { grid-template-columns: 1fr; }
+    .booking-info-grid { grid-template-columns: 1fr;
+     }
+
+    .status-grid { grid-template-columns: 1fr;
+     }
 }
 @media screen and (min-width: 992px) {
-    .navbar-brand em { font-size: 150%; }
-    main { margin-top: 75px; }
+    .navbar-brand em { font-size: 150%; 
+    }
     #perfume-card .card-title {
         padding-bottom: 35px;
         padding-top: 5px;
