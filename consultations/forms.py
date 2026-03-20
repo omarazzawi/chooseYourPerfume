@@ -5,7 +5,6 @@ from datetime import date
 
 class BookingForm(forms.ModelForm):
     """Form for creating a booking."""
-    
     class Meta:
         model = Booking
         fields = ['booking_date', 'booking_time', 'notes']
@@ -30,7 +29,7 @@ class BookingForm(forms.ModelForm):
             'booking_time': 'Preferred Time',
             'notes': 'Additional Notes',
         }
-    
+
     def clean_booking_date(self):
         booking_date = self.cleaned_data['booking_date']
         if booking_date < date.today():

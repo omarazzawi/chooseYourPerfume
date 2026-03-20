@@ -4,7 +4,7 @@ from .models import NewsletterSubscriber
 
 class NewsletterForm(forms.ModelForm):
     """Newsletter subscription form."""
-    
+
     class Meta:
         model = NewsletterSubscriber
         fields = ['email']

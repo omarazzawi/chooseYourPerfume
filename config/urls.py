@@ -29,11 +29,13 @@ sitemaps = {
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
-    path('history/', TemplateView.as_view(template_name='history.html'), name='history'),
+    path('history/',
+         TemplateView.as_view(template_name='history.html'), name='history'),
     path('accounts/', include('accounts.urls')),
     path('consultations/', include('consultations.urls')),
     path('reviews/', include('reviews.urls')),
     path('newsletter/', include('newsletter.urls')),
-    path('robots.txt', TemplateView.as_view(template_name='robots.txt', content_type='text/plain'), name='robots'),
+    path('robots.txt', TemplateView.as_view(template_name='robots.txt',
+         content_type='text/plain'), name='robots'),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
 ]

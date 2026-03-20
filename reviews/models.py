@@ -12,7 +12,7 @@ class Review(models.Model):
         (4, '4 - Very Good'),
         (5, '5 - Excellent'),
     ]
-    
+
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='reviews')
     session = models.ForeignKey(ConsultationSession, on_delete=models.CASCADE, related_name='reviews')
     rating = models.IntegerField(choices=RATING_CHOICES)
@@ -20,12 +20,12 @@ class Review(models.Model):
     comment = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    
+
     class Meta:
         verbose_name = 'Review'
         verbose_name_plural = 'Reviews'
         ordering = ['-created_at']
         unique_together = ['user', 'session']  # One review per user per session
-    
+
     def __str__(self):
         return f"{self.user.username} - {self.session.title} ({self.rating}/5)"

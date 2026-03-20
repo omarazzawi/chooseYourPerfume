@@ -18,14 +18,17 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 def consultation_list(request):
     """Display all available consultation sessions."""
     sessions = ConsultationSession.objects.filter(is_available=True)
-    return render(request, 'consultations/consultation_list.html', {'sessions': sessions})
+    return render(request,
+                  'consultations/consultation_list.html',
+                  {'sessions': sessions})
 
 
 @login_required
 def create_booking(request, session_id):
     """Create a new booking for a consultation session."""
-    session = get_object_or_404(ConsultationSession, id=session_id, is_available=True)
-    
+    session = get_object_or_404(ConsultationSession,
+                                id=session_id, is_available=True)
+
     if request.method == 'POST':
         form = BookingForm(request.POST)
         if form.is_valid():
@@ -38,7 +41,7 @@ def create_booking(request, session_id):
             return redirect('consultations:my_bookings')
     else:
         form = BookingForm()
-    
+
     return render(request, 'consultations/create_booking.html', {
         'form': form,
         'session': session
@@ -50,11 +53,12 @@ def my_bookings(request):
     """Display user's bookings separated by upcoming and past."""
     today = date.today()
     now = datetime.now().time()
-    
+
     # Show payment success message
     if request.GET.get('payment') == 'success':
-        messages.success(request, 'Payment successful! Your booking is confirmed.')
-    
+        messages.success(request,
+                         'Payment successful! Your booking is confirmed.')
+
     # Auto-update confirmed bookings that are now in the past to completed
     Booking.objects.filter(
         user=request.user,
@@ -62,17 +66,17 @@ def my_bookings(request):
         status='confirmed',
         is_paid=True
     ).update(status='completed')
-    
+
     # Get all bookings for today
     today_bookings = Booking.objects.filter(
         user=request.user,
         booking_date=today
     )
-    
-    # Separate today's bookings into upcoming (future time) and past (past time)
+
+    # Separate today's bookings into upcoming (future time) and  (past time)
     upcoming_today = []
     past_today = []
-    
+
     for booking in today_bookings:
         if booking.booking_time > now:
             upcoming_today.append(booking.id)
@@ -82,24 +86,24 @@ def my_bookings(request):
             if booking.status == 'confirmed' and booking.is_paid:
                 booking.status = 'completed'
                 booking.save()
-    
+
     # Upcoming: future dates + today's future times
     upcoming_bookings = Booking.objects.filter(
         user=request.user
     ).filter(
         Q(booking_date__gt=today) | Q(id__in=upcoming_today)
     ).order_by('booking_date', 'booking_time')
-    
+
     # Past: past dates + today's past times
     past_bookings = Booking.objects.filter(
         user=request.user
     ).filter(
         Q(booking_date__lt=today) | Q(id__in=past_today)
     ).order_by('-booking_date', '-booking_time')
-    
+
     # Get list of sessions user has already reviewed
     reviewed_sessions = Review.objects.filter(user=request.user).values_list('session_id', flat=True)
-    
+
     return render(request, 'consultations/my_bookings.html', {
         'upcoming_bookings': upcoming_bookings,
         'past_bookings': past_bookings,
@@ -111,7 +115,7 @@ def my_bookings(request):
 def edit_booking(request, booking_id):
     """Edit an existing booking."""
     booking = get_object_or_404(Booking, id=booking_id, user=request.user)
-    
+
     if request.method == 'POST':
         form = BookingForm(request.POST, instance=booking)
         if form.is_valid():
@@ -120,7 +124,7 @@ def edit_booking(request, booking_id):
             return redirect('consultations:my_bookings')
     else:
         form = BookingForm(instance=booking)
-    
+
     return render(request, 'consultations/edit_booking.html', {
         'form': form,
         'booking': booking
@@ -131,42 +135,45 @@ def edit_booking(request, booking_id):
 def delete_booking(request, booking_id):
     """Cancel/delete a booking."""
     booking = get_object_or_404(Booking, id=booking_id, user=request.user)
-    
+
     if request.method == 'POST':
         session_title = booking.session.title
         booking_date = booking.booking_date
         booking.delete()
-        messages.success(request, f'Booking for {session_title} on {booking_date} has been cancelled.')
+        messages.success(request,
+                         f'Booking for {session_title} on {booking_date} has been cancelled.')
         return redirect('consultations:my_bookings')
-    
-    return render(request, 'consultations/delete_booking.html', {'booking': booking})
+
+    return render(request,
+                  'consultations/delete_booking.html', {'booking': booking})
 
 
 @login_required
 def checkout(request, booking_id):
     """Checkout page for booking payment."""
     booking = get_object_or_404(Booking, id=booking_id, user=request.user)
-    
+
     # Check if already paid
     if booking.is_paid:
         messages.info(request, 'This booking has already been paid.')
         return redirect('consultations:my_bookings')
-    
+
     if request.method == 'POST':
         try:
             # Get payment method from request
             data = json.loads(request.body)
             payment_method_id = data.get('payment_method_id')
-            
+
             print(f"Payment Method ID: {payment_method_id}")  # Debug
-            
+
             # Create Stripe Payment Intent with payment method
             intent = stripe.PaymentIntent.create(
                 amount=int(booking.session.price * 100),  # Convert to cents
                 currency='eur',
                 payment_method=payment_method_id,
                 confirm=True,
-                return_url=request.build_absolute_uri('/consultations/my-bookings/'),
+                return_url=request.build_absolute_uri
+                          ('/consultations/my-bookings/'),
                 automatic_payment_methods={
                     'enabled': True,
                     'allow_redirects': 'never'
@@ -176,9 +183,9 @@ def checkout(request, booking_id):
                     'user_id': request.user.id,
                 }
             )
-            
+
             print(f"Payment Intent Status: {intent.status}")  # Debug
-            
+
             # Create Payment record
             payment = Payment.objects.create(
                 booking=booking,
@@ -186,19 +193,19 @@ def checkout(request, booking_id):
                 amount=booking.session.price,
                 status='succeeded'
             )
-            
+
             # Mark booking as paid and confirmed
             booking.is_paid = True
             booking.status = 'confirmed'
             booking.save()
-            
+
             print(f"Booking saved: {booking.id}")  # Debug
-            
+
             return JsonResponse({
                 'success': True,
                 'redirect_url': '/consultations/my-bookings/?payment=success'
             })
-            
+
         except stripe.error.CardError as e:
             print(f"CARD ERROR: {e.user_message}")  # Debug
             return JsonResponse({
@@ -217,7 +224,7 @@ def checkout(request, booking_id):
                 'success': False,
                 'error': str(e)
             })
-    
+
     context = {
         'booking': booking,
         'stripe_public_key': settings.STRIPE_PUBLIC_KEY,
@@ -229,9 +236,9 @@ def checkout(request, booking_id):
 def booking_detail(request, booking_id):
     """Display detailed information about a specific booking."""
     booking = get_object_or_404(Booking, id=booking_id, user=request.user)
-    
+
     context = {
         'booking': booking,
     }
-    
+
     return render(request, 'consultations/booking_detail.html', context)

@@ -1,6 +1,8 @@
+
 from django.contrib import admin
 from .models import ConsultationSession, Booking
 from .models import ConsultationSession, Booking, Payment
+
 
 @admin.register(ConsultationSession)
 class ConsultationSessionAdmin(admin.ModelAdmin):
@@ -13,11 +15,13 @@ class ConsultationSessionAdmin(admin.ModelAdmin):
 @admin.register(Booking)
 class BookingAdmin(admin.ModelAdmin):
     """Admin configuration for Booking."""
-    list_display = ['user', 'session', 'booking_date', 'booking_time', 'status', 'is_paid', 'created_at']
+    list_display = ['user', 'session',
+                    'booking_date', 'booking_time',
+                    'status', 'is_paid', 'created_at']
     list_filter = ['user', 'status', 'is_paid', 'booking_date']
-    search_fields = ['user__username', 'user__email', 'session__title', 'notes']
+    search_fields = ['user__username',
+                     'user__email', 'session__title', 'notes']
     date_hierarchy = 'booking_date'
-
 
 
 @admin.register(Payment)

@@ -10,12 +10,12 @@ from .forms import ReviewForm
 def create_review(request, session_id):
     """Create a new review for a consultation session."""
     session = get_object_or_404(ConsultationSession, id=session_id)
-    
+
     # Check if user already reviewed this session
     if Review.objects.filter(user=request.user, session=session).exists():
         messages.error(request, 'You have already reviewed this consultation.')
         return redirect('consultations:consultation_list')
-    
+
     if request.method == 'POST':
         form = ReviewForm(request.POST)
         if form.is_valid():
@@ -27,7 +27,7 @@ def create_review(request, session_id):
             return redirect('reviews:review_list')
     else:
         form = ReviewForm()
-    
+
     return render(request, 'reviews/create_review.html', {
         'form': form,
         'session': session
@@ -40,11 +40,12 @@ def review_list(request):
     reviews = Review.objects.filter(user=request.user)
     return render(request, 'reviews/review_list.html', {'reviews': reviews})
 
+
 @login_required
 def edit_review(request, review_id):
     """Edit an existing review."""
     review = get_object_or_404(Review, id=review_id, user=request.user)
-    
+
     if request.method == 'POST':
         form = ReviewForm(request.POST, instance=review)
         if form.is_valid():
@@ -53,21 +54,22 @@ def edit_review(request, review_id):
             return redirect('reviews:review_list')
     else:
         form = ReviewForm(instance=review)
-    
+
     return render(request, 'reviews/edit_review.html', {
         'form': form,
         'review': review
     })
 
+
 @login_required
 def delete_review(request, review_id):
     """Delete a review."""
     review = get_object_or_404(Review, id=review_id, user=request.user)
-    
+
     if request.method == 'POST':
         session_title = review.session.title
         review.delete()
         messages.success(request, f'Your review for {session_title} has been deleted.')
         return redirect('reviews:review_list')
-    
+
     return render(request, 'reviews/delete_review.html', {'review': review})
