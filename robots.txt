@@ -1,7 +1,4 @@
 User-agent: *
-Disallow: /admin/
-Disallow: /accounts/login/
-Disallow: /accounts/register/
-Allow: /
+Disallow: /accounts/
 
 Sitemap: https://chooseyourperfume-omar-5360433841bd.herokuapp.com/sitemap.xml
