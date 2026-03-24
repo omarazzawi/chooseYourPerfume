@@ -90,3 +90,37 @@
                             </div>
                             <div class="status-content">
                                 <span class="status-label">Payment Status</span>
+                                {% if booking.is_paid %}
+                                <span class="status-value text-success">
+                                    <i class="fa-solid fa-check-circle"></i> Paid
+                                </span>
+                                {% else %}
+                                <span class="status-value text-warning">
+                                    <i class="fa-solid fa-clock"></i> Pending Payment
+                                </span>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="status-item">
+                            <div class="status-icon">
+                                <i class="fa-solid fa-calendar-plus"></i>
+                            </div>
+                            <div class="status-content">
+                                <span class="status-label">Booked On</span>
+                                <span class="status-value">{{ booking.created_at|date:"M d, Y g:i A" }}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="card-footer text-center py-3">
+                    <a href="{% url 'consultations:my_bookings' %}" class="btn booking-back-btn">
+                        <i class="fa-solid fa-arrow-left"></i> Back to My Bookings
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
