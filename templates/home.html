@@ -1,17 +1,30 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Home - Choose Your Perfume{% endblock %}
+{% block extra_meta %}
+<!-- Homepage Specific Meta Tags -->
+<meta name="description" content="Choose Your Perfume - Expert online consultation service for men's cologne and fragrance selection. Find your signature scent or perfect gift with professional guidance. Book your personalized consultation today.">
 
+<meta property="og:title" content="Choose Your Perfume | Find Your Signature Scent">
+<meta property="og:description" content="Discover your perfect fragrance with expert online consultation. Personalized recommendations for men's cologne and gift fragrances.">
+<meta property="og:image" content="{% static 'images/og-image.jpg' %}">
+<meta property="og:type" content="website">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Choose Your Perfume | Expert Fragrance Consultation">
+<meta name="twitter:description" content="Find your signature scent with professional online perfume consultation.">
+{% endblock %}
+
+{% block title %}Choose Your Perfume | Find Your Signature Scent Online{% endblock %}
 {% block content %}
 <!-- Messages -->
 {% if messages %}
-    {% for message in messages %}
-        <div class="alert alert-{{ message.tags }} alert-dismissible fade show m-3" role="alert">
-            {{ message }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    {% endfor %}
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }} alert-dismissible fade show m-3" role="alert">
+    {{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
 {% endif %}
 <!-- Video Section -->
 <video controls loop muted autoplay class="video">
@@ -24,10 +37,11 @@
 <!-- Perfume Questions Section -->
 <section id="perfume-questions" class="container">
     <div>
-        <p>With endless perfumes to explore, I've spent years reading, testing, and falling in love with men's fragrances.
-           Through this journey, I've learned one golden rule: Before choosing your scent,
-           always ask yourself these key questions:</p>
-        
+        <p>With endless perfumes to explore, I've spent years reading, testing, and falling in love with men's
+            fragrances.
+            Through this journey, I've learned one golden rule: Before choosing your scent,
+            always ask yourself these key questions:</p>
+
         <ul>
             <li><strong>What</strong> is the occasion?
                 <ul>
@@ -45,8 +59,9 @@
                 </ul>
             </li>
         </ul>
-        
-        <p>Overwhelmed by those questions? Keep it simple—there are <strong><em>3 foolproof scents</em></strong> that always work:</p>
+
+        <p>Overwhelmed by those questions? Keep it simple—there are <strong><em>3 foolproof scents</em></strong> that
+            always work:</p>
     </div>
 
     <!-- Perfume Cards -->
@@ -54,11 +69,12 @@
         <div class="col-12 text-center">
             <h3>Minimalist Perfume Wardrobe: The Men Essential 3</h3>
         </div>
-        
+
         <!-- Date Perfume -->
         <div class="col-12 col-md-4 col-xl-4">
             <div class="card mb-2 mt-2 pb-10">
-                <img src="{% static 'images/datePerfumeOmar.jpg' %}" class="card-img-top" alt="Jean Paul Gaultier perfume bottle">
+                <img src="{% static 'images/datePerfumeOmar.jpg' %}" class="card-img-top"
+                    alt="Jean Paul Gaultier perfume bottle">
                 <div class="card-body">
                     <h3 class="card-title sub-heading-color">Date</h3>
                     <p class="card-text">
@@ -72,15 +88,17 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Winter Perfume -->
         <div class="col-12 col-md-4 col-xl-4 mb-2">
             <div class="card mb-2 mt-2">
-                <img src="{% static 'images/winterPerfumeOmar.jpg' %}" class="card-img-top" alt="Emporio Armani Stronger With You perfume">
+                <img src="{% static 'images/winterPerfumeOmar.jpg' %}" class="card-img-top"
+                    alt="Emporio Armani Stronger With You perfume">
                 <div class="card-body">
                     <h3 class="card-title sub-heading-color">Winter</h3>
                     <p class="card-text">
-                        <strong>Stronger With You by Armani</strong> - A bold winter scent with spicy cardamom, pink pepper,
+                        <strong>Stronger With You by Armani</strong> - A bold winter scent with spicy cardamom, pink
+                        pepper,
                         and violet leaf opening, warming into chestnut, vanilla, and amber.
                         Magnetic and irresistibly masculine.
                     </p>
@@ -90,11 +108,12 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Everyday Perfume -->
         <div class="col-12 col-md-4 col-xl-4">
             <div class="card mb-2 mt-2">
-                <img src="{% static 'images/evrydayPerfumeOmar.jpg' %}" class="card-img-top" alt="Nautica Voyage perfume bottle">
+                <img src="{% static 'images/evrydayPerfumeOmar.jpg' %}" class="card-img-top"
+                    alt="Nautica Voyage perfume bottle">
                 <div class="card-body">
                     <h3 class="card-title sub-heading-color">Every day</h3>
                     <p class="card-text">
@@ -120,17 +139,21 @@
                         <i class="fa-solid fa-envelope"></i> Get Perfume Tips & Exclusive Offers
                     </h3>
                     <p class="text-muted mb-4">
-                        Subscribe to our newsletter and discover your perfect scent. Receive expert tips, seasonal recommendations, and exclusive consultation offers.
+                        Subscribe to our newsletter and discover your perfect scent. Receive expert tips, seasonal
+                        recommendations, and exclusive consultation offers.
                     </p>
-                    
-                    <form method="post" action="{% url 'newsletter:subscribe' %}" class="d-flex gap-2">
+
+                    <form method="post" action="{% url 'newsletter:subscribe' %}">
                         {% csrf_token %}
-                        <input type="email" name="email" class="form-control form-control-lg" placeholder="Enter your email address" required>
-                        <button type="submit" class="btn btn-success btn-lg">
+                        <div class="mb-3">
+                            <input type="email" name="email" class="form-control form-control-lg"
+                                placeholder="Enter your email address" required>
+                        </div>
+                        <button type="submit" class="btn btn-success btn-lg w-100">
                             <i class="fa-solid fa-paper-plane"></i> Subscribe
                         </button>
                     </form>
-                    
+
                     <p class="text-muted mt-3 mb-0">
                         <small>We respect your privacy. Unsubscribe anytime.</small>
                     </p>

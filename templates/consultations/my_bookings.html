@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 
-{% block title %}My Bookings - Choose Your Perfume{% endblock %}
-
+{% block extra_meta %}
+<!-- My Bookings Page - Prevent Indexing (Private Content) -->
+<meta name="robots" content="noindex, nofollow">
+{% endblock %}
 {% block content %}
 
 <!-- Messages -->

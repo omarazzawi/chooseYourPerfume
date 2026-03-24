@@ -67,10 +67,15 @@ header .nav-link {
     font-weight: 100;
     font-style: italic;
     letter-spacing: 1.3px;
+    color: #FFFFFF;  /* Add this - white for better contrast */
+}
+
+.nav-link {
+    color: #FFFFFF !important;  /* Change from #F1F7ED to white */
 }
 
 .nav-link.active {
-    border-bottom: 2px solid #F1F7ED;
+    border-bottom: 2px solid #FFFFFF;  /* Change from #F1F7ED to white */
 }
 
 .dropdown-menu {
@@ -78,16 +83,16 @@ header .nav-link {
 }
 
 .dropdown-item {
-    color: #F1F7ED;
+    color: #FFFFFF;  /* Change from #F1F7ED to white */
 }
 
 .dropdown-item:hover {
     background-color: #28353d;
-    color: #F1F7ED;
+    color: #FFFFFF;  /* Change from #F1F7ED to white */
 }
 
 .dropdown-divider {
-    border-color: rgba(241, 247, 237, 0.2);
+    border-color: rgba(255, 255, 255, 0.2);  /* Change to white rgba */
 }
 
 /* ========================================

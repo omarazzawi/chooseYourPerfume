@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 
-{% block title %}Book {{ session.title }} - Choose Your Perfume{% endblock %}
+{% block extra_meta %}
+<!-- Booking Page - Prevent Indexing (User-Specific Content) -->
+<meta name="robots" content="noindex, nofollow">
+{% endblock %}
+
+{% block title %}Book Consultation - {{ session.title }} | Choose Your Perfume{% endblock %}
 
 {% block content %}
 <div class="container my-5">

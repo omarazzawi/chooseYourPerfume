@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 
-{% block title %}Login - Choose Your Perfume{% endblock %}
+{% block extra_meta %}
+<!-- Login Page - Prevent Indexing -->
+<meta name="robots" content="noindex, nofollow">
+{% endblock %}
+
+{% block title %}Login | Choose Your Perfume{% endblock %}
 
 {% block content %}
 <div class="container my-5">

@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 
-{% block title %}My Reviews - Choose Your Perfume{% endblock %}
+{% block extra_meta %}
+<!-- My Reviews Page - Prevent Indexing (Private Content) -->
+<meta name="robots" content="noindex, nofollow">
+{% endblock %}
+
+{% block title %}My Reviews | Choose Your Perfume{% endblock %}
 
 {% block content %}
 <div class="container my-5">

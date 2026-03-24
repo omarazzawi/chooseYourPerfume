@@ -4,4 +4,4 @@ Disallow: /accounts/login/
 Disallow: /accounts/register/
 Allow: /
 
-Sitemap: https://www.chooseyourperfume.com/sitemap.xml
+Sitemap: https://chooseyourperfume-omar-5360433841bd.herokuapp.com/sitemap.xml
