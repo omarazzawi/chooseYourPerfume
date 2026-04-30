@@ -19,23 +19,20 @@ from django.urls import path, include
 from django.views.generic import TemplateView
 from django.views.static import serve
 from django.conf import settings
-from django.contrib.sitemaps.views import sitemap
-from .sitemaps import StaticViewSitemap
-
-sitemaps = {
-    'static': StaticViewSitemap,
-}
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
-    path('history/',
-         TemplateView.as_view(template_name='history.html'), name='history'),
+    path('history/', TemplateView.as_view(template_name='history.html'), name='history'),
     path('accounts/', include('accounts.urls')),
     path('consultations/', include('consultations.urls')),
     path('reviews/', include('reviews.urls')),
     path('newsletter/', include('newsletter.urls')),
-    path('robots.txt', TemplateView.as_view(template_name='robots.txt',
-         content_type='text/plain'), name='robots'),
-    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
+]
+
+# Serve robots.txt and sitemap.xml in development and production
+urlpatterns += [
+    path('robots.txt', serve, {'document_root': settings.BASE_DIR, 'path': 'robots.txt'}),
+    path('sitemap.xml', serve, {'document_root': settings.BASE_DIR, 'path': 'sitemap.xml'}),
 ]

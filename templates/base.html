@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
- <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -11,7 +11,7 @@
      and virtual fragrance advisory. Discover your signature scent with professional guidance.
      Specializing in men's cologne selection and gift recommendations. 
      Book your personalized consultation today.">
-    
+
     <meta name="keywords" content="online perfume consultation,
      virtual fragrance consultation, perfume expert advice,
      men's cologne selection, signature scent, aromachology,
@@ -21,15 +21,17 @@
      cologne for men, fragrance expert, perfume consultation service,
      book consultation online, masculine scent, perfume gift guide, 
      online scent consultation, virtual perfume expert">
-    
+
     <meta name="author" content="Choose Your Perfume">
+    {% block robots_meta %}
     <meta name="robots" content="index, follow">
-    
+    {% endblock %}
+
     <!-- Open Graph Meta Tags for Social Media -->
     <meta property="og:site_name" content="Choose Your Perfume">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://chooseyourperfume-omar-5360433841bd.herokuapp.com/">
-    
+
     <!-- Allow page-specific meta overrides -->
     {% block extra_meta %}{% endblock %}
 
