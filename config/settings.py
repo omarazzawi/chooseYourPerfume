@@ -26,12 +26,7 @@ SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
-
-ALLOWED_HOSTS = config(
-    "ALLOWED_HOSTS",
-    default="localhost,127.0.0.1",
-).split(",")
-
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost').split(',')
 
 # Application definition
 
@@ -155,3 +150,6 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # Allow iframe embedding for Am I Responsive
 X_FRAME_OPTIONS = 'ALLOW'
+
+# Custom error pages
+CSRF_FAILURE_VIEW = 'django.views.csrf.csrf_failure'
