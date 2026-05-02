@@ -16,7 +16,18 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
 def consultation_list(request):
-    """Display all available consultation sessions."""
+    """
+    Display all available consultation sessions.
+    
+    Shows consultation cards with title, description, duration, and price
+    for all sessions marked as available in the database.
+    
+    Args:
+        request: HTTP request object
+        
+    Returns:
+        Rendered consultation_list.html template with available sessions
+    """
     sessions = ConsultationSession.objects.filter(is_available=True)
     return render(request,
                   'consultations/consultation_list.html',
@@ -25,7 +36,20 @@ def consultation_list(request):
 
 @login_required
 def create_booking(request, session_id):
-    """Create a new booking for a consultation session."""
+    """
+    Create a new booking for a consultation session.
+    
+    Handles GET requests by displaying booking form and POST requests
+    by creating a new booking with status 'pending' for the logged-in user.
+    
+    Args:
+        request: HTTP request object
+        session_id: ID of the ConsultationSession to book
+        
+    Returns:
+        GET: Rendered create_booking.html with empty form
+        POST: Redirect to my_bookings on success, or form with errors
+    """
     session = get_object_or_404(ConsultationSession,
                                 id=session_id, is_available=True)
 
@@ -50,7 +74,24 @@ def create_booking(request, session_id):
 
 @login_required
 def my_bookings(request):
-    """Display user's bookings separated by upcoming and past."""
+    """
+    Display user's bookings separated into upcoming and past consultations.
+    
+    Automatically updates booking statuses:
+    - Past confirmed bookings → completed
+    - Today's past-time bookings → completed
+    
+    Separates bookings into two categories:
+    - Upcoming: Future dates + today's future times
+    - Past: Past dates + today's past times
+    
+    Args:
+        request: HTTP request object
+        
+    Returns:
+        Rendered my_bookings.html with upcoming_bookings, past_bookings,
+        and reviewed_sessions list
+    """
     today = date.today()
     now = datetime.now().time()
 
@@ -73,7 +114,7 @@ def my_bookings(request):
         booking_date=today
     )
 
-    # Separate today's bookings into upcoming (future time) and  (past time)
+    # Separate today's bookings into upcoming (future time) and past (past time)
     upcoming_today = []
     past_today = []
 
@@ -113,7 +154,20 @@ def my_bookings(request):
 
 @login_required
 def edit_booking(request, booking_id):
-    """Edit an existing booking."""
+    """
+    Edit an existing booking's date, time, or notes.
+    
+    Only allows editing of bookings owned by the logged-in user.
+    Preserves booking status and payment information.
+    
+    Args:
+        request: HTTP request object
+        booking_id: ID of the Booking to edit
+        
+    Returns:
+        GET: Rendered edit_booking.html with pre-filled form
+        POST: Redirect to my_bookings on success, or form with errors
+    """
     booking = get_object_or_404(Booking, id=booking_id, user=request.user)
 
     if request.method == 'POST':
@@ -133,7 +187,20 @@ def edit_booking(request, booking_id):
 
 @login_required
 def delete_booking(request, booking_id):
-    """Cancel/delete a booking."""
+    """
+    Cancel and delete a booking.
+    
+    Only allows deletion of bookings owned by the logged-in user.
+    Permanently removes the booking and associated payment records.
+    
+    Args:
+        request: HTTP request object
+        booking_id: ID of the Booking to delete
+        
+    Returns:
+        GET: Rendered delete_booking.html confirmation page
+        POST: Redirect to my_bookings after deletion
+    """
     booking = get_object_or_404(Booking, id=booking_id, user=request.user)
 
     if request.method == 'POST':
@@ -150,7 +217,25 @@ def delete_booking(request, booking_id):
 
 @login_required
 def checkout(request, booking_id):
-    """Checkout page for booking payment."""
+    """
+    Handle Stripe payment processing for a booking.
+    
+    Displays checkout page with Stripe payment form on GET request.
+    Processes payment through Stripe API on POST request and updates
+    booking status to 'confirmed' and is_paid to True on success.
+    
+    Args:
+        request: HTTP request object
+        booking_id: ID of the Booking to pay for
+        
+    Returns:
+        GET: Rendered checkout.html with Stripe public key
+        POST: JSON response with success status and redirect URL
+        
+    Raises:
+        stripe.error.CardError: Card declined or invalid
+        stripe.error.StripeError: Stripe API error
+    """
     booking = get_object_or_404(Booking, id=booking_id, user=request.user)
 
     # Check if already paid
@@ -234,7 +319,19 @@ def checkout(request, booking_id):
 
 @login_required
 def booking_detail(request, booking_id):
-    """Display detailed information about a specific booking."""
+    """
+    Display detailed information about a specific booking.
+    
+    Shows complete booking information including date, time, duration,
+    price, session description, status, payment status, and booking reference.
+    
+    Args:
+        request: HTTP request object
+        booking_id: ID of the Booking to display
+        
+    Returns:
+        Rendered booking_detail.html with booking details
+    """
     booking = get_object_or_404(Booking, id=booking_id, user=request.user)
 
     context = {

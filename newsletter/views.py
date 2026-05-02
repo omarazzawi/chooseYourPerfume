@@ -5,12 +5,36 @@ from .forms import NewsletterForm
 
 
 def home(request):
-    """Home page."""
+    """
+    Render the homepage with hero video and newsletter signup.
+    
+    Displays perfume consultation information, featured services,
+    and newsletter subscription form in the footer.
+    
+    Args:
+        request: HTTP request object
+        
+    Returns:
+        Rendered home.html template
+    """
     return render(request, 'home.html')
 
 
 def subscribe(request):
-    """Handle newsletter subscription."""
+    """
+    Handle newsletter subscription with reactivation support.
+    
+    Implements soft-delete pattern:
+    - New email: Creates active subscriber
+    - Existing active email: Shows "already subscribed" message
+    - Existing inactive email: Reactivates subscription
+    
+    Args:
+        request: HTTP request object (POST only)
+        
+    Returns:
+        Redirect to home with appropriate success/info message
+    """
     if request.method == 'POST':
         email = request.POST.get('email')
 
@@ -37,7 +61,19 @@ def subscribe(request):
 
 
 def unsubscribe(request):
-    """Unsubscribe from newsletter."""
+    """
+    Handle newsletter unsubscription with soft delete.
+    
+    Sets is_active to False instead of deleting the record,
+    allowing for future resubscription with the same email.
+    
+    Args:
+        request: HTTP request object
+        
+    Returns:
+        GET: Rendered unsubscribe.html confirmation page
+        POST: Redirect to home with success/error message
+    """
     if request.method == 'POST':
         email = request.POST.get('email')
 
